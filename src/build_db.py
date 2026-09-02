@@ -1,3 +1,8 @@
+"""This file stores the weather forecast data in a SQLite database so it can be saved and accessed later in the pipeline.
+The save_to_db() function takes in a forecast DataFrame and saves its rows to the database without returning anything.
+It uses insert or replace so rerunning the pipeline updates forecasts for existing dates intead of creating duplicate rows.
+"""
+
 """Storing the data. One job: put the table somewhere it will stay.
 
 A SQLite database is a single file. There is no server to start, no
