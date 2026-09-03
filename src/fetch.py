@@ -1,3 +1,9 @@
+#In this file the variables longitude and latitude are given values.
+#The API Open-Meteo is called into the program and a list is created based on the values from the longitude and latitue values.
+#In addition to the longitude and latitude the list has the daily maximum and minimum temperatures and the total accumulation of rain,
+#the temperature in fahrenheit, the time zone and the number of days of datat to be collected (7).
+#It prints the result as a list and sent the results to the main file. 
+
 """Getting the data. One job: go to the API and come back with a table.
 
 This file knows about Open-Meteo. Nothing else in the project does, which
