@@ -1,3 +1,8 @@
+# This file creates a weather chart using forecast data stored in the database.
+# The make_chart() function creates a bar chart and saves it as a PNG file.
+# It reads the forecast from the database to make sure that the stored weather data can be used successfully.
+
+
 """Drawing the picture. One job: read the database, write a PNG.
 
 Note that matplotlib is never imported here. pandas plots by calling it
