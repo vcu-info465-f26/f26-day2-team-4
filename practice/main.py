@@ -1,9 +1,9 @@
 from pathlib import Path
 
-import build_db
-import chart
-import fetch
-import analyze
+import practice.build_db as build_db
+import practice.chart as chart
+import practice.fetch as fetch
+import practice.analyze as analyze
 
 # YOUR WORK, STEP 1 OF 2
 # Uncomment this once you have created src/analyze.py on your branch:
