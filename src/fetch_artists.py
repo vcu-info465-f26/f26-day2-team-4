@@ -4,7 +4,7 @@ import requests
 def get_top_artists():
     response = requests.get(
         "https://api.listenbrainz.org/1/stats/sitewide/artists",
-        params={"range": "week", "count": 10}
+        params={"range": "week", "count": 30}
     )
 
     data = response.json()
