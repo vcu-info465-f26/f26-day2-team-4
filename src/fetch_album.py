@@ -17,7 +17,7 @@ def get_most_listened_albums_last_5_years():
     params = {
         "from": from_timestamp,
         "to": to_timestamp,
-        "count": 10  
+        "count": 30  
     }
 
     response = requests.get(url, params=params, timeout=10)
@@ -42,5 +42,5 @@ def get_most_listened_albums_last_5_years():
     else:
         return pd.DataFrame(columns=["Artist", "Album"])
 
-top_ten_albums = get_most_listened_albums_last_5_years()
-print(top_ten_albums)
+top_albums = get_most_listened_albums_last_5_years()
+print(top_albums)
