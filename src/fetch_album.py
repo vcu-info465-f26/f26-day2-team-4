@@ -17,7 +17,7 @@ def get_most_listened_albums_last_5_years():
     params = {
         "from": from_timestamp,
         "to": to_timestamp,
-        "count": 10  
+        "count": 30  
     }
 
     response = requests.get(url, params=params, timeout=10)
