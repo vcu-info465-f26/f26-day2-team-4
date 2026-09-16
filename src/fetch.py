@@ -52,3 +52,20 @@ def get_most_listened_albums_today():
 
 top_albums = get_most_listened_albums_today()
 
+top_albums.to_json(DATA_DIR / f"Album_{today}.json", indent=2, orient='records')
+
+def get_top_artists():
+    response = requests.get(
+        "https://api.listenbrainz.org/1/stats/sitewide/artists",
+        params={"range": "week", "count": 30})
+
+    artist_data = response.json()
+    return artist_data["payload"]["artists"]
+
+
+artists = get_top_artists()
+with open(DATA_DIR / f"Artists_{today}.json", "w") as f:
+        json.dump(artists, f, indent=2, sort_keys=True)
+
+
+print(f"Saved{today}")
