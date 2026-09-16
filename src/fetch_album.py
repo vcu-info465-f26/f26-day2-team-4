@@ -42,5 +42,5 @@ def get_most_listened_albums_last_5_years():
     else:
         return pd.DataFrame(columns=["Artist", "Album"])
 
-top_ten_albums = get_most_listened_albums_last_5_years()
-print(top_ten_albums)
+top_albums = get_most_listened_albums_last_5_years()
+print(top_albums)
