@@ -22,8 +22,6 @@ Primary key: `snapshot_date` and `artist_mbid`
 | release_name | TEXT | Album or release name |
 | artist_name | TEXT | Name shown for the release |
 | listen_count | INTEGER | Number of release listens |
-| caa_id | INTEGER | Cover Art Archive ID |
-| caa_release_mbid | TEXT | Release ID used for cover art |
 
 Primary key: `snapshot_date` and `release_mbid`
 
