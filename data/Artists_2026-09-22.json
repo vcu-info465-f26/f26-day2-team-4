@@ -1,152 +1,152 @@
 [
   {
-    "Artist":"BTS",
-    "Artist ID":"0d79fe8e-ba27-4859-bb8c-2f255f346853",
-    "Listen Count":308114
+    "artist_name":"BTS",
+    "artist_mbid":"0d79fe8e-ba27-4859-bb8c-2f255f346853",
+    "listen_count":308114
   },
   {
-    "Artist":"Agust D",
-    "Artist ID":"f09d2950-e3c6-47b2-b21c-2bad2cd3f616",
-    "Listen Count":61782
+    "artist_name":"Agust D",
+    "artist_mbid":"f09d2950-e3c6-47b2-b21c-2bad2cd3f616",
+    "listen_count":61782
   },
   {
-    "Artist":"RM",
-    "Artist ID":"58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9",
-    "Listen Count":56424
+    "artist_name":"RM",
+    "artist_mbid":"58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9",
+    "listen_count":56424
   },
   {
-    "Artist":"Jung Kook",
-    "Artist ID":"23c8056b-ee13-4cfc-a772-2f5292e35bb5",
-    "Listen Count":39686
+    "artist_name":"Jung Kook",
+    "artist_mbid":"23c8056b-ee13-4cfc-a772-2f5292e35bb5",
+    "listen_count":39686
   },
   {
-    "Artist":"Jin",
-    "Artist ID":"09720eec-3871-49d5-932d-eb7542768cd3",
-    "Listen Count":35026
+    "artist_name":"Jin",
+    "artist_mbid":"09720eec-3871-49d5-932d-eb7542768cd3",
+    "listen_count":35026
   },
   {
-    "Artist":"BTS",
-    "Artist ID":null,
-    "Listen Count":34773
+    "artist_name":"BTS",
+    "artist_mbid":null,
+    "listen_count":34773
   },
   {
-    "Artist":"V",
-    "Artist ID":"83096042-3785-481e-8843-dee69f1aad12",
-    "Listen Count":31875
+    "artist_name":"V",
+    "artist_mbid":"83096042-3785-481e-8843-dee69f1aad12",
+    "listen_count":31875
   },
   {
-    "Artist":"j\u2010hope",
-    "Artist ID":"b3977da4-f899-4328-921b-ecc599a5618a",
-    "Listen Count":28672
+    "artist_name":"j\u2010hope",
+    "artist_mbid":"b3977da4-f899-4328-921b-ecc599a5618a",
+    "listen_count":28672
   },
   {
-    "Artist":"RM, youjeen",
-    "Artist ID":null,
-    "Listen Count":26136
+    "artist_name":"RM, youjeen",
+    "artist_mbid":null,
+    "listen_count":26136
   },
   {
-    "Artist":"Linkin Park",
-    "Artist ID":"f59c5520-5f46-4d2c-b2c4-822eabf53419",
-    "Listen Count":23914
+    "artist_name":"Linkin Park",
+    "artist_mbid":"f59c5520-5f46-4d2c-b2c4-822eabf53419",
+    "listen_count":23914
   },
   {
-    "Artist":"Jimin",
-    "Artist ID":"d2582c77-6b0f-4b2f-802f-8f3cad1a5fec",
-    "Listen Count":23869
+    "artist_name":"Jimin",
+    "artist_mbid":"d2582c77-6b0f-4b2f-802f-8f3cad1a5fec",
+    "listen_count":23869
   },
   {
-    "Artist":"RM",
-    "Artist ID":null,
-    "Listen Count":20933
+    "artist_name":"RM",
+    "artist_mbid":null,
+    "listen_count":20933
   },
   {
-    "Artist":"Latto",
-    "Artist ID":"355cc194-b8db-4af2-8678-c7ad54213f4b",
-    "Listen Count":20117
+    "artist_name":"Latto",
+    "artist_mbid":"355cc194-b8db-4af2-8678-c7ad54213f4b",
+    "listen_count":20117
   },
   {
-    "Artist":"Radiohead",
-    "Artist ID":"a74b1b7f-71a5-4011-9441-d0b5e4122711",
-    "Listen Count":18242
+    "artist_name":"Radiohead",
+    "artist_mbid":"a74b1b7f-71a5-4011-9441-d0b5e4122711",
+    "listen_count":18242
   },
   {
-    "Artist":"Ye",
-    "Artist ID":"164f0d73-1234-4e2c-8743-d77bf2191051",
-    "Listen Count":17288
+    "artist_name":"Ye",
+    "artist_mbid":"164f0d73-1234-4e2c-8743-d77bf2191051",
+    "listen_count":17288
   },
   {
-    "Artist":"Taylor Swift",
-    "Artist ID":"20244d07-534f-4eff-b4d4-930878889970",
-    "Listen Count":13261
+    "artist_name":"Taylor Swift",
+    "artist_mbid":"20244d07-534f-4eff-b4d4-930878889970",
+    "listen_count":13261
   },
   {
-    "Artist":"Toby Fox",
-    "Artist ID":"1c26f82c-b35d-4c8e-a1f4-9c20747495c9",
-    "Listen Count":12839
+    "artist_name":"Toby Fox",
+    "artist_mbid":"1c26f82c-b35d-4c8e-a1f4-9c20747495c9",
+    "listen_count":12839
   },
   {
-    "Artist":"Kendrick Lamar",
-    "Artist ID":"381086ea-f511-4aba-bdf9-71c753dc5077",
-    "Listen Count":12167
+    "artist_name":"Kendrick Lamar",
+    "artist_mbid":"381086ea-f511-4aba-bdf9-71c753dc5077",
+    "listen_count":12167
   },
   {
-    "Artist":"Tame Impala",
-    "Artist ID":"63aa26c3-d59b-4da4-84ac-716b54f1ef4d",
-    "Listen Count":12047
+    "artist_name":"Tame Impala",
+    "artist_mbid":"63aa26c3-d59b-4da4-84ac-716b54f1ef4d",
+    "listen_count":12047
   },
   {
-    "Artist":"GloRilla",
-    "Artist ID":"2a7ef045-ca10-4cb5-8fe9-1f5d38e84bc2",
-    "Listen Count":11951
+    "artist_name":"GloRilla",
+    "artist_mbid":"2a7ef045-ca10-4cb5-8fe9-1f5d38e84bc2",
+    "listen_count":11951
   },
   {
-    "Artist":"The Weeknd",
-    "Artist ID":"c8b03190-306c-4120-bb0b-6f2ebfc06ea9",
-    "Listen Count":11718
+    "artist_name":"The Weeknd",
+    "artist_mbid":"c8b03190-306c-4120-bb0b-6f2ebfc06ea9",
+    "listen_count":11718
   },
   {
-    "Artist":"j-hope, GloRilla",
-    "Artist ID":null,
-    "Listen Count":11603
+    "artist_name":"j-hope, GloRilla",
+    "artist_mbid":null,
+    "listen_count":11603
   },
   {
-    "Artist":"Olivia Rodrigo",
-    "Artist ID":"6925db17-f35e-42f3-a4eb-84ee6bf5d4b0",
-    "Listen Count":11467
+    "artist_name":"Olivia Rodrigo",
+    "artist_mbid":"6925db17-f35e-42f3-a4eb-84ee6bf5d4b0",
+    "listen_count":11467
   },
   {
-    "Artist":"The Beatles",
-    "Artist ID":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-    "Listen Count":11353
+    "artist_name":"The Beatles",
+    "artist_mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+    "listen_count":11353
   },
   {
-    "Artist":"My Chemical Romance",
-    "Artist ID":"c07f0676-9143-4217-8a9f-4c26bd636f13",
-    "Listen Count":11242
+    "artist_name":"My Chemical Romance",
+    "artist_mbid":"c07f0676-9143-4217-8a9f-4c26bd636f13",
+    "listen_count":11242
   },
   {
-    "Artist":"twenty one pilots",
-    "Artist ID":"a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
-    "Listen Count":10535
+    "artist_name":"twenty one pilots",
+    "artist_mbid":"a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+    "listen_count":10535
   },
   {
-    "Artist":"Charli xcx",
-    "Artist ID":"260b6184-8828-48eb-945c-bc4cb6fc34ca",
-    "Listen Count":10386
+    "artist_name":"Charli xcx",
+    "artist_mbid":"260b6184-8828-48eb-945c-bc4cb6fc34ca",
+    "listen_count":10386
   },
   {
-    "Artist":"Eminem",
-    "Artist ID":"b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
-    "Listen Count":10330
+    "artist_name":"Eminem",
+    "artist_mbid":"b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
+    "listen_count":10330
   },
   {
-    "Artist":"Daft Punk",
-    "Artist ID":"056e4f3e-d505-4dad-8ec1-d04f521cbb56",
-    "Listen Count":10239
+    "artist_name":"Daft Punk",
+    "artist_mbid":"056e4f3e-d505-4dad-8ec1-d04f521cbb56",
+    "listen_count":10239
   },
   {
-    "Artist":"Pink Floyd",
-    "Artist ID":"83d91898-7763-47d7-b03b-b92132375c47",
-    "Listen Count":10211
+    "artist_name":"Pink Floyd",
+    "artist_mbid":"83d91898-7763-47d7-b03b-b92132375c47",
+    "listen_count":10211
   }
 ]

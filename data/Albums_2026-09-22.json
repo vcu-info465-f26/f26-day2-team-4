@@ -1,0 +1,272 @@
+[
+  {
+    "artist_name":"Radiohead",
+    "artist_mbid":[
+      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    ],
+    "release_name":"OK Computer",
+    "release_mbid":"1834eae1-741b-3c03-9ca5-0df3decb43ea",
+    "listen_count":1169376
+  },
+  {
+    "artist_name":"Nirvana",
+    "artist_mbid":[
+      "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    ],
+    "release_name":"Nevermind",
+    "release_mbid":"eccae410-7577-4daa-b602-92d305828331",
+    "listen_count":1058218
+  },
+  {
+    "artist_name":"Radiohead",
+    "artist_mbid":[
+      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    ],
+    "release_name":"In Rainbows",
+    "release_mbid":"ea92a194-2d60-35c7-9d56-0e1dba20cd45",
+    "listen_count":975438
+  },
+  {
+    "artist_name":"Linkin Park",
+    "artist_mbid":[
+      "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    ],
+    "release_name":"Hybrid Theory",
+    "release_mbid":"a92e8636-a48c-4ad1-8a5f-4f8a968a50ac",
+    "listen_count":950297
+  },
+  {
+    "artist_name":"Linkin Park",
+    "artist_mbid":[
+      "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    ],
+    "release_name":"Meteora",
+    "release_mbid":"e9b5c5ad-d91e-39d0-89fc-b8ac312bcc55",
+    "listen_count":947024
+  },
+  {
+    "artist_name":"Daft Punk",
+    "artist_mbid":[
+      "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    ],
+    "release_name":"Discovery",
+    "release_mbid":"bd3bb36e-16c8-438f-850e-dfbf4d1478f0",
+    "listen_count":934967
+  },
+  {
+    "artist_name":"Pink Floyd",
+    "artist_mbid":[
+      "83d91898-7763-47d7-b03b-b92132375c47"
+    ],
+    "release_name":"The Wall",
+    "release_mbid":"8eb1532a-bccb-4cc4-b590-5be19386a6f7",
+    "listen_count":850885
+  },
+  {
+    "artist_name":"System of a Down",
+    "artist_mbid":[
+      "cc0b7089-c08d-4c10-b6b0-873582c17fd6"
+    ],
+    "release_name":"Toxicity",
+    "release_mbid":"929ab33e-0e04-4c81-8027-b456b2c9ed4f",
+    "listen_count":849014
+  },
+  {
+    "artist_name":"Arctic Monkeys",
+    "artist_mbid":[
+      "ada7a83c-e3e1-40f1-93f9-3e73dbc9298a"
+    ],
+    "release_name":"AM",
+    "release_mbid":"55171afe-440e-4c63-947c-e49074f3d5b5",
+    "listen_count":795981
+  },
+  {
+    "artist_name":"Gorillaz",
+    "artist_mbid":[
+      "e21857d5-3256-4547-afb3-4b6ded592596"
+    ],
+    "release_name":"Demon Days",
+    "release_mbid":"2968b394-7ca8-3b6a-a3ec-a0239adb01c9",
+    "listen_count":789276
+  },
+  {
+    "artist_name":"Tame Impala",
+    "artist_mbid":[
+      "63aa26c3-d59b-4da4-84ac-716b54f1ef4d"
+    ],
+    "release_name":"Currents",
+    "release_mbid":"b9410b9a-cb64-41ac-b863-fa95f8eb51ea",
+    "listen_count":756817
+  },
+  {
+    "artist_name":"Pink Floyd",
+    "artist_mbid":[
+      "83d91898-7763-47d7-b03b-b92132375c47"
+    ],
+    "release_name":"The Dark Side of the Moon",
+    "release_mbid":"7f6d3088-837d-495e-905f-be5c70ac2d82",
+    "listen_count":749060
+  },
+  {
+    "artist_name":"The Beatles",
+    "artist_mbid":[
+      "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    ],
+    "release_name":"Abbey Road",
+    "release_mbid":"6bb3793b-f991-378e-9bff-0bd3117f2298",
+    "listen_count":728822
+  },
+  {
+    "artist_name":"Radiohead",
+    "artist_mbid":[
+      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    ],
+    "release_name":"The Bends",
+    "release_mbid":"b3b28d75-e474-43b8-a9ec-4c6856fc10b2",
+    "listen_count":727209
+  },
+  {
+    "artist_name":"Daft Punk",
+    "artist_mbid":[
+      "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    ],
+    "release_name":"Random Access Memories",
+    "release_mbid":"bbfc83ad-826f-4957-893d-a808105c828b",
+    "listen_count":724505
+  },
+  {
+    "artist_name":"Radiohead",
+    "artist_mbid":[
+      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    ],
+    "release_name":"Kid A",
+    "release_mbid":"e1bdf797-8b89-4d4c-8986-bcb0974d9726",
+    "listen_count":703812
+  },
+  {
+    "artist_name":"My Chemical Romance",
+    "artist_mbid":[
+      "c07f0676-9143-4217-8a9f-4c26bd636f13"
+    ],
+    "release_name":"The Black Parade",
+    "release_mbid":"d09de1f8-0ad8-37cc-ac71-342890279916",
+    "listen_count":678675
+  },
+  {
+    "artist_name":"Kendrick Lamar",
+    "artist_mbid":[
+      "381086ea-f511-4aba-bdf9-71c753dc5077"
+    ],
+    "release_name":"DAMN.",
+    "release_mbid":"81ad6e82-8e70-4805-8866-42e246c6f68c",
+    "listen_count":670522
+  },
+  {
+    "artist_name":"The Killers",
+    "artist_mbid":[
+      "95e1ead9-4d31-4808-a7ac-32c3614c116b"
+    ],
+    "release_name":"Hot Fuss",
+    "release_mbid":"3127c6af-617f-4d82-9002-6cc74ab8648d",
+    "listen_count":641666
+  },
+  {
+    "artist_name":"Billie Eilish",
+    "artist_mbid":[
+      "f4abc0b5-3f7a-4eff-8f78-ac078dbce533"
+    ],
+    "release_name":"WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
+    "release_mbid":"c784f470-f998-4806-b9b7-36b54c2d0003",
+    "listen_count":634550
+  },
+  {
+    "artist_name":"The Beatles",
+    "artist_mbid":[
+      "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    ],
+    "release_name":"The Beatles",
+    "release_mbid":"280bffe4-a8f1-4d9b-abf2-205e0ab936a5",
+    "listen_count":630260
+  },
+  {
+    "artist_name":"Red Hot Chili Peppers",
+    "artist_mbid":[
+      "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    ],
+    "release_name":"Californication",
+    "release_mbid":"4ad6711f-3f5d-4f7b-a5eb-46636a37e47a",
+    "listen_count":626261
+  },
+  {
+    "artist_name":"Kendrick Lamar",
+    "artist_mbid":[
+      "381086ea-f511-4aba-bdf9-71c753dc5077"
+    ],
+    "release_name":"To Pimp a Butterfly",
+    "release_mbid":"8a426098-714d-4897-b180-dfd8f0a70fc9",
+    "listen_count":623260
+  },
+  {
+    "artist_name":"Lana Del Rey",
+    "artist_mbid":[
+      "b7539c32-53e7-4908-bda3-81449c367da6"
+    ],
+    "release_name":"Born to Die",
+    "release_mbid":"b8861fc7-75ed-415a-bd52-c6d8e10662ae",
+    "listen_count":620181
+  },
+  {
+    "artist_name":"Metallica",
+    "artist_mbid":[
+      "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    ],
+    "release_name":"Metallica",
+    "release_mbid":"d87a6b90-7a9e-4ca1-a170-194bf443e2e9",
+    "listen_count":612534
+  },
+  {
+    "artist_name":"Nirvana",
+    "artist_mbid":[
+      "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    ],
+    "release_name":"In Utero",
+    "release_mbid":"9402f68c-bc93-4278-8515-01d06fda1b39",
+    "listen_count":611772
+  },
+  {
+    "artist_name":"Fleetwood Mac",
+    "artist_mbid":[
+      "bd13909f-1c29-4c27-a874-d4aaf27c5b1a"
+    ],
+    "release_name":"Rumours",
+    "release_mbid":"89c1282b-257a-4a17-a870-433ce249f504",
+    "listen_count":609600
+  },
+  {
+    "artist_name":"Muse",
+    "artist_mbid":[
+      "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    ],
+    "release_name":"Black Holes and Revelations",
+    "release_mbid":"f1458768-777e-4d46-96eb-2d0e6d8cbaa0",
+    "listen_count":603550
+  },
+  {
+    "artist_name":"Kendrick Lamar",
+    "artist_mbid":[
+      "381086ea-f511-4aba-bdf9-71c753dc5077"
+    ],
+    "release_name":"good kid, m.A.A.d city",
+    "release_mbid":"e1d99364-1ad9-4f4d-9505-2242eff10a44",
+    "listen_count":599082
+  },
+  {
+    "artist_name":"Arctic Monkeys",
+    "artist_mbid":[
+      "ada7a83c-e3e1-40f1-93f9-3e73dbc9298a"
+    ],
+    "release_name":"Favourite Worst Nightmare",
+    "release_mbid":"f68c985d-f18b-4f4a-b7f0-87837cf3fbf9",
+    "listen_count":586087
+  }
+]

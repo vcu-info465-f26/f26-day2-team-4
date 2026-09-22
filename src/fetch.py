@@ -37,26 +37,29 @@ def get_most_listened_albums_today():
     albums_data = []
     if full_response and 'payload' in full_response and 'releases' in full_response['payload']:
         for album_info in full_response['payload']['releases']:
-            artist_a = album_info.get('artist_name')
-            album = album_info.get('release_name')
-            release_id = album_info.get('release_mbid')
+            artist_name = album_info.get('artist_name')
+            artist_mbid = album_info.get('artist_mbids')
+            release_name = album_info.get('release_name')
+            release_mbid = album_info.get('release_mbid')
             listen_count = album_info.get('listen_count')
-            if artist_a and album:
+            if artist_name and release_name:
                 albums_data.append({
-                    "Artist": artist_a,
-                    "Album": album,
-                    "Release ID": release_id,
-                    "Listen Count": listen_count
+                    "artist_name": artist_name,
+                    "artist_mbid": artist_mbid,
+                    "release_name": release_name,
+                    "release_mbid": release_mbid,
+                    "listen_count": listen_count
                 })
 
     if albums_data:
         return pd.DataFrame(albums_data)
     else:
-        return pd.DataFrame(columns=["Artist", "Album"])
+        return pd.DataFrame(columns=["artist_name", "artist_mbid","release_name",
+                                     "release_mbid","listen_count"])
 
 top_albums = get_most_listened_albums_today()
 
-top_albums.to_json(DATA_DIR / f"Album_{today}.json", indent=2, orient='records')
+top_albums.to_json(DATA_DIR / f"Albums_{today}.json", indent=2, orient='records')
 
 def get_top_artists():
     response = requests.get(
@@ -67,19 +70,19 @@ def get_top_artists():
     artist_data = []
     if artist_response and 'payload' in artist_response and 'artists' in artist_response['payload']:
             for artist_info in artist_response['payload']['artists']:
-                artist = artist_info.get('artist_name')
-                artist_id = artist_info.get('artist_mbid')
-                artist_listen_count = artist_info.get('listen_count')
-                if artist:
+                artist_name = artist_info.get('artist_name')
+                artist_mbid = artist_info.get('artist_mbid')
+                listen_count = artist_info.get('listen_count')
+                if artist_name:
                     artist_data.append({
-                        "Artist": artist,
-                        "Artist ID": artist_id,
-                        "Listen Count": artist_listen_count
+                        "artist_name": artist_name,
+                        "artist_mbid": artist_mbid,
+                        "listen_count": listen_count
                     })
     if artist_data:
         return pd.DataFrame(artist_data)
     else:
-        return pd.DataFrame(columns=["Artist", "Artisit ID","Listen Count"])
+        return pd.DataFrame(columns=["artist_name", "artist_mbid","listen_count"])
    
 
 artists = get_top_artists()
