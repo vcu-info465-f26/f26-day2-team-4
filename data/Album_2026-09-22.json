@@ -1,0 +1,182 @@
+[
+  {
+    "Artist":"Radiohead",
+    "Album":"OK Computer",
+    "Release ID":"1834eae1-741b-3c03-9ca5-0df3decb43ea",
+    "Listen Count":1169376
+  },
+  {
+    "Artist":"Nirvana",
+    "Album":"Nevermind",
+    "Release ID":"eccae410-7577-4daa-b602-92d305828331",
+    "Listen Count":1058218
+  },
+  {
+    "Artist":"Radiohead",
+    "Album":"In Rainbows",
+    "Release ID":"ea92a194-2d60-35c7-9d56-0e1dba20cd45",
+    "Listen Count":975438
+  },
+  {
+    "Artist":"Linkin Park",
+    "Album":"Hybrid Theory",
+    "Release ID":"a92e8636-a48c-4ad1-8a5f-4f8a968a50ac",
+    "Listen Count":950297
+  },
+  {
+    "Artist":"Linkin Park",
+    "Album":"Meteora",
+    "Release ID":"e9b5c5ad-d91e-39d0-89fc-b8ac312bcc55",
+    "Listen Count":947024
+  },
+  {
+    "Artist":"Daft Punk",
+    "Album":"Discovery",
+    "Release ID":"bd3bb36e-16c8-438f-850e-dfbf4d1478f0",
+    "Listen Count":934967
+  },
+  {
+    "Artist":"Pink Floyd",
+    "Album":"The Wall",
+    "Release ID":"8eb1532a-bccb-4cc4-b590-5be19386a6f7",
+    "Listen Count":850885
+  },
+  {
+    "Artist":"System of a Down",
+    "Album":"Toxicity",
+    "Release ID":"929ab33e-0e04-4c81-8027-b456b2c9ed4f",
+    "Listen Count":849014
+  },
+  {
+    "Artist":"Arctic Monkeys",
+    "Album":"AM",
+    "Release ID":"55171afe-440e-4c63-947c-e49074f3d5b5",
+    "Listen Count":795981
+  },
+  {
+    "Artist":"Gorillaz",
+    "Album":"Demon Days",
+    "Release ID":"2968b394-7ca8-3b6a-a3ec-a0239adb01c9",
+    "Listen Count":789276
+  },
+  {
+    "Artist":"Tame Impala",
+    "Album":"Currents",
+    "Release ID":"b9410b9a-cb64-41ac-b863-fa95f8eb51ea",
+    "Listen Count":756817
+  },
+  {
+    "Artist":"Pink Floyd",
+    "Album":"The Dark Side of the Moon",
+    "Release ID":"7f6d3088-837d-495e-905f-be5c70ac2d82",
+    "Listen Count":749060
+  },
+  {
+    "Artist":"The Beatles",
+    "Album":"Abbey Road",
+    "Release ID":"6bb3793b-f991-378e-9bff-0bd3117f2298",
+    "Listen Count":728822
+  },
+  {
+    "Artist":"Radiohead",
+    "Album":"The Bends",
+    "Release ID":"b3b28d75-e474-43b8-a9ec-4c6856fc10b2",
+    "Listen Count":727209
+  },
+  {
+    "Artist":"Daft Punk",
+    "Album":"Random Access Memories",
+    "Release ID":"bbfc83ad-826f-4957-893d-a808105c828b",
+    "Listen Count":724505
+  },
+  {
+    "Artist":"Radiohead",
+    "Album":"Kid A",
+    "Release ID":"e1bdf797-8b89-4d4c-8986-bcb0974d9726",
+    "Listen Count":703812
+  },
+  {
+    "Artist":"My Chemical Romance",
+    "Album":"The Black Parade",
+    "Release ID":"d09de1f8-0ad8-37cc-ac71-342890279916",
+    "Listen Count":678675
+  },
+  {
+    "Artist":"Kendrick Lamar",
+    "Album":"DAMN.",
+    "Release ID":"81ad6e82-8e70-4805-8866-42e246c6f68c",
+    "Listen Count":670522
+  },
+  {
+    "Artist":"The Killers",
+    "Album":"Hot Fuss",
+    "Release ID":"3127c6af-617f-4d82-9002-6cc74ab8648d",
+    "Listen Count":641666
+  },
+  {
+    "Artist":"Billie Eilish",
+    "Album":"WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
+    "Release ID":"c784f470-f998-4806-b9b7-36b54c2d0003",
+    "Listen Count":634550
+  },
+  {
+    "Artist":"The Beatles",
+    "Album":"The Beatles",
+    "Release ID":"280bffe4-a8f1-4d9b-abf2-205e0ab936a5",
+    "Listen Count":630260
+  },
+  {
+    "Artist":"Red Hot Chili Peppers",
+    "Album":"Californication",
+    "Release ID":"4ad6711f-3f5d-4f7b-a5eb-46636a37e47a",
+    "Listen Count":626261
+  },
+  {
+    "Artist":"Kendrick Lamar",
+    "Album":"To Pimp a Butterfly",
+    "Release ID":"8a426098-714d-4897-b180-dfd8f0a70fc9",
+    "Listen Count":623260
+  },
+  {
+    "Artist":"Lana Del Rey",
+    "Album":"Born to Die",
+    "Release ID":"b8861fc7-75ed-415a-bd52-c6d8e10662ae",
+    "Listen Count":620181
+  },
+  {
+    "Artist":"Metallica",
+    "Album":"Metallica",
+    "Release ID":"d87a6b90-7a9e-4ca1-a170-194bf443e2e9",
+    "Listen Count":612534
+  },
+  {
+    "Artist":"Nirvana",
+    "Album":"In Utero",
+    "Release ID":"9402f68c-bc93-4278-8515-01d06fda1b39",
+    "Listen Count":611772
+  },
+  {
+    "Artist":"Fleetwood Mac",
+    "Album":"Rumours",
+    "Release ID":"89c1282b-257a-4a17-a870-433ce249f504",
+    "Listen Count":609600
+  },
+  {
+    "Artist":"Muse",
+    "Album":"Black Holes and Revelations",
+    "Release ID":"f1458768-777e-4d46-96eb-2d0e6d8cbaa0",
+    "Listen Count":603550
+  },
+  {
+    "Artist":"Kendrick Lamar",
+    "Album":"good kid, m.A.A.d city",
+    "Release ID":"e1d99364-1ad9-4f4d-9505-2242eff10a44",
+    "Listen Count":599082
+  },
+  {
+    "Artist":"Arctic Monkeys",
+    "Album":"Favourite Worst Nightmare",
+    "Release ID":"f68c985d-f18b-4f4a-b7f0-87837cf3fbf9",
+    "Listen Count":586087
+  }
+]

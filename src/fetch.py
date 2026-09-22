@@ -37,12 +37,16 @@ def get_most_listened_albums_today():
     albums_data = []
     if full_response and 'payload' in full_response and 'releases' in full_response['payload']:
         for album_info in full_response['payload']['releases']:
-            artist = album_info.get('artist_name')
+            artist_a = album_info.get('artist_name')
             album = album_info.get('release_name')
-            if artist and album:
+            release_id = album_info.get('release_mbid')
+            listen_count = album_info.get('listen_count')
+            if artist_a and album:
                 albums_data.append({
-                    "Artist": artist,
-                    "Album": album
+                    "Artist": artist_a,
+                    "Album": album,
+                    "Release ID": release_id,
+                    "Listen Count": listen_count
                 })
 
     if albums_data:
@@ -59,13 +63,27 @@ def get_top_artists():
         "https://api.listenbrainz.org/1/stats/sitewide/artists",
         params={"range": "week", "count": 30})
 
-    artist_data = response.json()
-    return artist_data["payload"]["artists"]
-
+    artist_response = response.json()
+    artist_data = []
+    if artist_response and 'payload' in artist_response and 'artists' in artist_response['payload']:
+            for artist_info in artist_response['payload']['artists']:
+                artist = artist_info.get('artist_name')
+                artist_id = artist_info.get('artist_mbid')
+                artist_listen_count = artist_info.get('listen_count')
+                if artist:
+                    artist_data.append({
+                        "Artist": artist,
+                        "Artist ID": artist_id,
+                        "Listen Count": artist_listen_count
+                    })
+    if artist_data:
+        return pd.DataFrame(artist_data)
+    else:
+        return pd.DataFrame(columns=["Artist", "Artisit ID","Listen Count"])
+   
 
 artists = get_top_artists()
-with open(DATA_DIR / f"Artists_{today}.json", "w") as f:
-        json.dump(artists, f, indent=2, sort_keys=True)
+artists.to_json(DATA_DIR / f"Artists_{today}.json", indent=2, orient='records')
 
 
 print(f"Saved{today}")
