@@ -38,14 +38,14 @@ def get_most_listened_albums_today():
     if full_response and 'payload' in full_response and 'releases' in full_response['payload']:
         for album_info in full_response['payload']['releases']:
             artist_name = album_info.get('artist_name')
-            artist_mbid = album_info.get('artist_mbids')
+            artist_mbids = album_info.get('artist_mbids')
             release_name = album_info.get('release_name')
             release_mbid = album_info.get('release_mbid')
             listen_count = album_info.get('listen_count')
             if artist_name and release_name:
                 albums_data.append({
                     "artist_name": artist_name,
-                    "artist_mbid": artist_mbid,
+                    "artist_mbids": artist_mbids,
                     "release_name": release_name,
                     "release_mbid": release_mbid,
                     "listen_count": listen_count
