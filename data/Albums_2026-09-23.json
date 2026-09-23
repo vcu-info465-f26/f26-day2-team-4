@@ -1,272 +1,273 @@
 [
   {
-    "artist_name":"Radiohead",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"OK Computer",
-    "release_mbid":"1834eae1-741b-3c03-9ca5-0df3decb43ea",
-    "listen_count":1169376
+    "release_name":"ARIRANG",
+    "release_mbid":"bfa4553e-fa39-44b2-b17e-14f2875d352f",
+    "listen_count":470132
   },
   {
-    "artist_name":"Nirvana",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Nevermind",
-    "release_mbid":"eccae410-7577-4daa-b602-92d305828331",
-    "listen_count":1058218
+    "release_name":"ARIRANG",
+    "release_mbid":"efb0cfe1-ac49-449d-bbe2-2121cac844d8",
+    "listen_count":90844
   },
   {
-    "artist_name":"Radiohead",
+    "artist_name":"Agust D",
     "artist_mbids":[
-      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+      "f09d2950-e3c6-47b2-b21c-2bad2cd3f616"
     ],
-    "release_name":"In Rainbows",
-    "release_mbid":"ea92a194-2d60-35c7-9d56-0e1dba20cd45",
-    "listen_count":975438
+    "release_name":"D\u2010DAY",
+    "release_mbid":"a44bdae7-959e-4f9f-820d-3358021793db",
+    "listen_count":54832
   },
   {
-    "artist_name":"Linkin Park",
+    "artist_name":"Jung Kook",
     "artist_mbids":[
-      "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+      "23c8056b-ee13-4cfc-a772-2f5292e35bb5"
     ],
-    "release_name":"Hybrid Theory",
-    "release_mbid":"a92e8636-a48c-4ad1-8a5f-4f8a968a50ac",
-    "listen_count":950297
+    "release_name":"GOLDEN",
+    "release_mbid":"0b926b4b-e10c-4dd3-aefd-ae351d77c804",
+    "listen_count":37156
   },
   {
-    "artist_name":"Linkin Park",
+    "artist_name":"RM, Youjeen",
     "artist_mbids":[
-      "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+
     ],
-    "release_name":"Meteora",
-    "release_mbid":"e9b5c5ad-d91e-39d0-89fc-b8ac312bcc55",
-    "listen_count":947024
+    "release_name":"Indigo",
+    "release_mbid":null,
+    "listen_count":24154
   },
   {
-    "artist_name":"Daft Punk",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Discovery",
-    "release_mbid":"bd3bb36e-16c8-438f-850e-dfbf4d1478f0",
-    "listen_count":934967
+    "release_name":"KEEP SWIMMING",
+    "release_mbid":"6c587909-53eb-478c-b7de-8a8773004699",
+    "listen_count":21325
   },
   {
-    "artist_name":"Pink Floyd",
+    "artist_name":"RM",
     "artist_mbids":[
-      "83d91898-7763-47d7-b03b-b92132375c47"
+      "58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9"
     ],
-    "release_name":"The Wall",
-    "release_mbid":"8eb1532a-bccb-4cc4-b590-5be19386a6f7",
-    "listen_count":850885
+    "release_name":"Right Place, Wrong Person",
+    "release_mbid":"7d440284-3622-4d45-ab49-2243de95dd3e",
+    "listen_count":21276
   },
   {
-    "artist_name":"System of a Down",
+    "artist_name":"JIN",
     "artist_mbids":[
-      "cc0b7089-c08d-4c10-b6b0-873582c17fd6"
+      "09720eec-3871-49d5-932d-eb7542768cd3"
     ],
-    "release_name":"Toxicity",
-    "release_mbid":"929ab33e-0e04-4c81-8027-b456b2c9ed4f",
-    "listen_count":849014
+    "release_name":"Echo",
+    "release_mbid":"a9345007-05fa-4b4b-a437-dab041cb1f95",
+    "listen_count":20158
   },
   {
-    "artist_name":"Arctic Monkeys",
+    "artist_name":"Jimin",
     "artist_mbids":[
-      "ada7a83c-e3e1-40f1-93f9-3e73dbc9298a"
+      "d2582c77-6b0f-4b2f-802f-8f3cad1a5fec"
     ],
-    "release_name":"AM",
-    "release_mbid":"55171afe-440e-4c63-947c-e49074f3d5b5",
-    "listen_count":795981
+    "release_name":"Muse",
+    "release_mbid":"486402d0-274f-474c-a33e-b08c2902bfd5",
+    "listen_count":18613
   },
   {
-    "artist_name":"Gorillaz",
+    "artist_name":"RM",
     "artist_mbids":[
-      "e21857d5-3256-4547-afb3-4b6ded592596"
+
     ],
-    "release_name":"Demon Days",
-    "release_mbid":"2968b394-7ca8-3b6a-a3ec-a0239adb01c9",
-    "listen_count":789276
+    "release_name":"Indigo",
+    "release_mbid":null,
+    "listen_count":17396
   },
   {
-    "artist_name":"Tame Impala",
+    "artist_name":"Agust D",
     "artist_mbids":[
-      "63aa26c3-d59b-4da4-84ac-716b54f1ef4d"
+      "f09d2950-e3c6-47b2-b21c-2bad2cd3f616"
     ],
-    "release_name":"Currents",
-    "release_mbid":"b9410b9a-cb64-41ac-b863-fa95f8eb51ea",
-    "listen_count":756817
+    "release_name":"D-2",
+    "release_mbid":"f4315147-efe5-4a65-bae2-b358fbb1d045",
+    "listen_count":14970
   },
   {
-    "artist_name":"Pink Floyd",
+    "artist_name":"j-hope",
     "artist_mbids":[
-      "83d91898-7763-47d7-b03b-b92132375c47"
+      "b3977da4-f899-4328-921b-ecc599a5618a"
     ],
-    "release_name":"The Dark Side of the Moon",
-    "release_mbid":"7f6d3088-837d-495e-905f-be5c70ac2d82",
-    "listen_count":749060
+    "release_name":"Killin\u2019 It Girl",
+    "release_mbid":"543c8424-aae0-4e3f-ad2a-65590520aa38",
+    "listen_count":14548
   },
   {
-    "artist_name":"The Beatles",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Abbey Road",
-    "release_mbid":"6bb3793b-f991-378e-9bff-0bd3117f2298",
-    "listen_count":728822
+    "release_name":"MAP OF THE SOUL : 7",
+    "release_mbid":"f718b3b6-5530-45f3-9c04-3583dd4951b6",
+    "listen_count":14254
   },
   {
-    "artist_name":"Radiohead",
+    "artist_name":"Carly Rae Jepsen",
     "artist_mbids":[
-      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+      "09887aa7-226e-4ecc-9a0c-02d2ae5777e1"
     ],
-    "release_name":"The Bends",
-    "release_mbid":"b3b28d75-e474-43b8-a9ec-4c6856fc10b2",
-    "listen_count":727209
+    "release_name":"Day and Night",
+    "release_mbid":"209c2e4d-6fe2-4f6d-877b-597968bd175a",
+    "listen_count":14049
   },
   {
-    "artist_name":"Daft Punk",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Random Access Memories",
-    "release_mbid":"bbfc83ad-826f-4957-893d-a808105c828b",
-    "listen_count":724505
+    "release_name":"WINGS",
+    "release_mbid":"394640fb-6f96-4f07-82d2-3639ddb84104",
+    "listen_count":13919
   },
   {
-    "artist_name":"Radiohead",
+    "artist_name":"V with Park Hyo Shin",
     "artist_mbids":[
-      "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+      "83096042-3785-481e-8843-dee69f1aad12",
+      "e941e097-0f9e-496d-a381-dd74a953682c"
     ],
-    "release_name":"Kid A",
-    "release_mbid":"e1bdf797-8b89-4d4c-8986-bcb0974d9726",
-    "listen_count":703812
+    "release_name":"Winter Ahead",
+    "release_mbid":"de94a3d5-21d8-4edb-9c47-bba191fcd4df",
+    "listen_count":11556
   },
   {
-    "artist_name":"My Chemical Romance",
+    "artist_name":"Agust D",
     "artist_mbids":[
-      "c07f0676-9143-4217-8a9f-4c26bd636f13"
+      "f09d2950-e3c6-47b2-b21c-2bad2cd3f616"
     ],
-    "release_name":"The Black Parade",
-    "release_mbid":"d09de1f8-0ad8-37cc-ac71-342890279916",
-    "listen_count":678675
+    "release_name":"Agust D",
+    "release_mbid":"a224c449-2816-4c8d-b85f-d23bc9d24ef3",
+    "listen_count":11309
   },
   {
-    "artist_name":"Kendrick Lamar",
+    "artist_name":"RM",
     "artist_mbids":[
-      "381086ea-f511-4aba-bdf9-71c753dc5077"
+      "58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9"
     ],
-    "release_name":"DAMN.",
-    "release_mbid":"81ad6e82-8e70-4805-8866-42e246c6f68c",
-    "listen_count":670522
+    "release_name":"Indigo",
+    "release_mbid":"ff8d680b-2bec-4953-a409-688714f26d51",
+    "listen_count":11253
   },
   {
-    "artist_name":"The Killers",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "95e1ead9-4d31-4808-a7ac-32c3614c116b"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Hot Fuss",
-    "release_mbid":"3127c6af-617f-4d82-9002-6cc74ab8648d",
-    "listen_count":641666
+    "release_name":"PERMISSION TO DANCE ON STAGE - LIVE",
+    "release_mbid":"62e3b996-8bae-442e-a60b-25b45d39762e",
+    "listen_count":10348
   },
   {
-    "artist_name":"Billie Eilish",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "f4abc0b5-3f7a-4eff-8f78-ac078dbce533"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?",
-    "release_mbid":"c784f470-f998-4806-b9b7-36b54c2d0003",
-    "listen_count":634550
+    "release_name":"LOVE YOURSELF \u8f49 \u2018Tear\u2019",
+    "release_mbid":"8618145b-6ae4-4f0a-ae59-4a4660a72abd",
+    "listen_count":10259
   },
   {
-    "artist_name":"The Beatles",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"The Beatles",
-    "release_mbid":"280bffe4-a8f1-4d9b-abf2-205e0ab936a5",
-    "listen_count":630260
+    "release_name":"LOVE YOURSELF \u7d50 \u2018Answer\u2019",
+    "release_mbid":"bfd070c3-40fe-4f7e-a400-e4f4e7aac3c3",
+    "listen_count":9992
   },
   {
-    "artist_name":"Red Hot Chili Peppers",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Californication",
-    "release_mbid":"4ad6711f-3f5d-4f7b-a5eb-46636a37e47a",
-    "listen_count":626261
+    "release_name":"LOVE YOURSELF \u627f \u2018Her\u2019",
+    "release_mbid":"e9abf180-ff60-41ef-8020-3a7e84e94444",
+    "listen_count":9776
   },
   {
-    "artist_name":"Kendrick Lamar",
+    "artist_name":"j-hope, GloRilla",
     "artist_mbids":[
-      "381086ea-f511-4aba-bdf9-71c753dc5077"
+
     ],
-    "release_name":"To Pimp a Butterfly",
-    "release_mbid":"8a426098-714d-4897-b180-dfd8f0a70fc9",
-    "listen_count":623260
+    "release_name":"Killin' It Girl (feat. GloRilla)",
+    "release_mbid":null,
+    "listen_count":9440
   },
   {
-    "artist_name":"Lana Del Rey",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "b7539c32-53e7-4908-bda3-81449c367da6"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"Born to Die",
-    "release_mbid":"b8861fc7-75ed-415a-bd52-c6d8e10662ae",
-    "listen_count":620181
+    "release_name":"NORMAL",
+    "release_mbid":"542beea5-c2ce-4d2e-a9d3-0cff4b480467",
+    "listen_count":9144
   },
   {
-    "artist_name":"Metallica",
+    "artist_name":"RM",
     "artist_mbids":[
-      "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+      "58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9"
     ],
-    "release_name":"Metallica",
-    "release_mbid":"d87a6b90-7a9e-4ca1-a170-194bf443e2e9",
-    "listen_count":612534
+    "release_name":"mono.",
+    "release_mbid":"8712da57-f453-45d2-baae-f1e14c5fcdbc",
+    "listen_count":9082
   },
   {
-    "artist_name":"Nirvana",
+    "artist_name":"BTS",
     "artist_mbids":[
-      "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+      "0d79fe8e-ba27-4859-bb8c-2f255f346853"
     ],
-    "release_name":"In Utero",
-    "release_mbid":"9402f68c-bc93-4278-8515-01d06fda1b39",
-    "listen_count":611772
+    "release_name":"BE",
+    "release_mbid":"4adde75f-ef2f-4195-a8da-fb65c9647dd8",
+    "listen_count":7314
   },
   {
-    "artist_name":"Fleetwood Mac",
+    "artist_name":"j\u2010hope",
     "artist_mbids":[
-      "bd13909f-1c29-4c27-a874-d4aaf27c5b1a"
+      "b3977da4-f899-4328-921b-ecc599a5618a"
     ],
-    "release_name":"Rumours",
-    "release_mbid":"89c1282b-257a-4a17-a870-433ce249f504",
-    "listen_count":609600
+    "release_name":"Jack In The Box",
+    "release_mbid":"aea1932d-281d-4bb0-a61e-7a21a4b74619",
+    "listen_count":7313
   },
   {
-    "artist_name":"Muse",
+    "artist_name":"Agust D",
     "artist_mbids":[
-      "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+      "f09d2950-e3c6-47b2-b21c-2bad2cd3f616"
     ],
-    "release_name":"Black Holes and Revelations",
-    "release_mbid":"f1458768-777e-4d46-96eb-2d0e6d8cbaa0",
-    "listen_count":603550
+    "release_name":"Agust D",
+    "release_mbid":"e2b55f96-2b14-466c-ac54-be4c146ec59f",
+    "listen_count":6541
   },
   {
-    "artist_name":"Kendrick Lamar",
+    "artist_name":"Toby Fox",
     "artist_mbids":[
-      "381086ea-f511-4aba-bdf9-71c753dc5077"
+      "1c26f82c-b35d-4c8e-a1f4-9c20747495c9"
     ],
-    "release_name":"good kid, m.A.A.d city",
-    "release_mbid":"e1d99364-1ad9-4f4d-9505-2242eff10a44",
-    "listen_count":599082
+    "release_name":"UNDERTALE",
+    "release_mbid":"be37a91e-d5db-4c27-994c-0390d14d4396",
+    "listen_count":6091
   },
   {
-    "artist_name":"Arctic Monkeys",
+    "artist_name":"Olivia Rodrigo",
     "artist_mbids":[
-      "ada7a83c-e3e1-40f1-93f9-3e73dbc9298a"
+      "6925db17-f35e-42f3-a4eb-84ee6bf5d4b0"
     ],
-    "release_name":"Favourite Worst Nightmare",
-    "release_mbid":"f68c985d-f18b-4f4a-b7f0-87837cf3fbf9",
-    "listen_count":586087
+    "release_name":"you seem pretty sad for a girl so in love",
+    "release_mbid":"89072e5f-a8c3-41e2-946c-e80806183290",
+    "listen_count":5979
   }
 ]
