@@ -8,6 +8,7 @@ def get_artist_releases():
     results = pd.read_sql_query(
         """
         SELECT
+        artist_stats.snapshot_date AS pulled_date,
         artist_stats.artist_name,
         artist_stats.listen_count AS artist_listens,
         release_stats.release_name,
