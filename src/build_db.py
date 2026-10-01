@@ -69,10 +69,18 @@ for path in sorted(DATA_DIR.glob("Albums_*.json")):
     with open(path) as file:
         albums = json.load(file)
 
+    seen_release_stats = set()
+    seen_release_artists = set()
+
     for album in albums:
         release_mbid = album.get("release_mbid")
 
         if release_mbid:
+            release_key = (snapshot_date, release_mbid)
+            if release_key in seen_release_stats:
+                continue
+            seen_release_stats.add(release_key)
+
             conn.execute(
                 "INSERT INTO release_stats VALUES (?, ?, ?, ?, ?)",
                 (
@@ -84,7 +92,13 @@ for path in sorted(DATA_DIR.glob("Albums_*.json")):
                 ),
             )
 
-            for artist_mbid in album.get("artist_mbids", []):
+            for artist_mbid in dict.fromkeys(album.get("artist_mbids", [])):
+                if not artist_mbid:
+                    continue
+                relationship_key = (snapshot_date, release_mbid, artist_mbid)
+                if relationship_key in seen_release_artists:
+                    continue
+                seen_release_artists.add(relationship_key)
                 conn.execute(
                     "INSERT INTO release_artists VALUES (?, ?, ?)",
                     (snapshot_date, release_mbid, artist_mbid),
