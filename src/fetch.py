@@ -24,7 +24,7 @@ def get_most_listened_albums_today():
 
     full_response = response.json()
 
-    albums_data = []
+    albums_by_mbid = {}
     if full_response and 'payload' in full_response and 'releases' in full_response['payload']:
         for album_info in full_response['payload']['releases']:
             artist_name = album_info.get('artist_name')
@@ -32,14 +32,19 @@ def get_most_listened_albums_today():
             release_name = album_info.get('release_name')
             release_mbid = album_info.get('release_mbid')
             listen_count = album_info.get('listen_count')
-            if artist_name and release_name:
-                albums_data.append({
+            if artist_name and release_name and release_mbid:
+                existing = albums_by_mbid.get(release_mbid)
+                candidate = {
                     "artist_name": artist_name,
                     "artist_mbids": artist_mbids,
                     "release_name": release_name,
                     "release_mbid": release_mbid,
-                    "listen_count": listen_count
-                })
+                    "listen_count": listen_count,
+                }
+                if existing is None or (listen_count or 0) > (existing.get("listen_count") or 0):
+                    albums_by_mbid[release_mbid] = candidate
+
+    albums_data = list(albums_by_mbid.values())
 
     if albums_data:
         return pd.DataFrame(albums_data)
