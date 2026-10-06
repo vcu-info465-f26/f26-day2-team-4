@@ -18,7 +18,7 @@ def get_most_listened_albums_today():
     url = "https://api.listenbrainz.org/1/stats/sitewide/releases"
     params = {"range":"week", "count": 30}
 
-    response = requests.get(url, params=params, timeout=10)
+    response = requests.get(url, params=params, timeout=30)
 
     response.raise_for_status()
 
