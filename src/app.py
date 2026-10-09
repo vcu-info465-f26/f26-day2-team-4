@@ -45,8 +45,36 @@ if artist_data.empty and release_data.empty:
     st.warning("The database has no listen-count snapshots yet.")
     st.stop()
 
-artists = artist_data
-releases = release_data
+date_values = pd.concat(
+    [frame["snapshot_date"] for frame in (artist_data, release_data) if not frame.empty]
+)
+min_date = date_values.min().date()
+max_date = date_values.max().date()
+
+st.sidebar.header("Filters")
+selected_date_range = st.sidebar.date_input(
+    "Snapshot date range",
+    value=(min_date, max_date),
+    min_value=min_date,
+    max_value=max_date,
+)
+
+if not isinstance(selected_date_range, tuple) or len(selected_date_range) != 2:
+    st.info("Select both a start date and an end date.")
+    st.stop()
+
+start_date, end_date = pd.to_datetime(selected_date_range)
+
+artists = artist_data[
+    (artist_data["snapshot_date"] >= start_date)
+    & (artist_data["snapshot_date"] <= end_date)
+].copy()
+releases = release_data[
+    (release_data["snapshot_date"] >= start_date)
+    & (release_data["snapshot_date"] <= end_date)
+].copy()
+
+st.sidebar.divider()
 
 if artists.empty and releases.empty:
     st.info("No snapshots match the selected date range.")
