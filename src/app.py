@@ -5,6 +5,9 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from build_db import build
+build()
+
 DB_PATH = Path(__file__).resolve().parents[1] / "project.db"
 
 st.set_page_config(page_title="Listen Count Dashboard", layout="wide")
@@ -14,19 +17,36 @@ st.set_page_config(page_title="Listen Count Dashboard", layout="wide")
 def load_data(database_path):
     with sqlite3.connect(database_path) as connection:
         artists = pd.read_sql_query(
-            "SELECT snapshot_date, artist_mbid, artist_name, listen_count "
-            "FROM artist_stats",
+            "SELECT snapshot_date, artist_mbid, artist_name, listen_count FROM artist_stats",
             connection,
         )
         releases = pd.read_sql_query(
-            "SELECT snapshot_date, release_mbid, release_name, artist_name, listen_count "
-            "FROM release_stats",
+            "SELECT snapshot_date, release_mbid, release_name, artist_name, listen_count FROM release_stats",
             connection,
         )
 
     artists["snapshot_date"] = pd.to_datetime(artists["snapshot_date"])
     releases["snapshot_date"] = pd.to_datetime(releases["snapshot_date"])
     return artists, releases
+
+
+def get_date_bounds(dataframes):
+    dates = pd.concat(
+        [frame["snapshot_date"] for frame in dataframes if not frame.empty],
+        ignore_index=True,
+    )
+    return dates.min().date(), dates.max().date()
+
+
+def filter_by_date(frame, start_date, end_date):
+    return frame[
+        (frame["snapshot_date"] >= start_date) & (frame["snapshot_date"] <= end_date)
+    ].copy()
+
+
+def build_label_map(frame, key_field, label_format):
+    options = frame.drop_duplicates(key_field).sort_values("listen_count", ascending=False)
+    return {label_format(row): getattr(row, key_field) for row in options.itertuples()}
 
 
 st.title("Listen Count Dashboard")
@@ -45,11 +65,7 @@ if artist_data.empty and release_data.empty:
     st.warning("The database has no listen-count snapshots yet.")
     st.stop()
 
-date_values = pd.concat(
-    [frame["snapshot_date"] for frame in (artist_data, release_data) if not frame.empty]
-)
-min_date = date_values.min().date()
-max_date = date_values.max().date()
+min_date, max_date = get_date_bounds((artist_data, release_data))
 
 st.sidebar.header("Filters")
 selected_date_range = st.sidebar.date_input(
@@ -64,15 +80,8 @@ if not isinstance(selected_date_range, tuple) or len(selected_date_range) != 2:
     st.stop()
 
 start_date, end_date = pd.to_datetime(selected_date_range)
-
-artists = artist_data[
-    (artist_data["snapshot_date"] >= start_date)
-    & (artist_data["snapshot_date"] <= end_date)
-].copy()
-releases = release_data[
-    (release_data["snapshot_date"] >= start_date)
-    & (release_data["snapshot_date"] <= end_date)
-].copy()
+artists = filter_by_date(artist_data, start_date, end_date)
+releases = filter_by_date(release_data, start_date, end_date)
 
 st.sidebar.divider()
 
@@ -86,20 +95,16 @@ latest_date = max(
 latest_artists = artists[artists["snapshot_date"] == latest_date]
 latest_releases = releases[releases["snapshot_date"] == latest_date]
 
-artist_options = latest_artists.drop_duplicates("artist_mbid").sort_values(
-    "listen_count", ascending=False
+artist_labels = build_label_map(
+    latest_artists,
+    "artist_mbid",
+    lambda row: f"{row.artist_name} [{row.artist_mbid[:8]}]",
 )
-artist_labels = {
-    f"{row.artist_name} [{row.artist_mbid[:8]}]": row.artist_mbid
-    for row in artist_options.itertuples()
-}
-release_options = latest_releases.drop_duplicates("release_mbid").sort_values(
-    "listen_count", ascending=False
+release_labels = build_label_map(
+    latest_releases,
+    "release_mbid",
+    lambda row: f"{row.release_name} - {row.artist_name} [{row.release_mbid[:8]}]",
 )
-release_labels = {
-    f"{row.release_name} - {row.artist_name} [{row.release_mbid[:8]}]": row.release_mbid
-    for row in release_options.itertuples()
-}
 
 st.sidebar.subheader("Chart series")
 selected_artists = st.sidebar.multiselect(
@@ -118,24 +123,27 @@ release_ids = [release_labels[label] for label in selected_releases]
 album_tab, artist_tab, both_tab = st.tabs(["Albums", "Artists", "Both"])
 
 with album_tab:
-    st.subheader("Release listens over time")
     release_trend = releases[releases["release_mbid"].isin(release_ids)].copy()
     if release_trend.empty:
+        st.subheader("Release listens over time")
         st.info("Select one or more releases to show this chart.")
     else:
-        release_trend["series"] = (
-            release_trend["release_name"] + " - " + release_trend["artist_name"]
-        )
-        figure = px.line(
+        release_trend["series"] = release_trend["release_name"] + " - " + release_trend["artist_name"]
+        fig = px.line(
             release_trend,
             x="snapshot_date",
             y="listen_count",
             color="series",
             markers=True,
             hover_data=["release_mbid"],
-            labels={"snapshot_date": "Snapshot date", "listen_count": "Listens", "series": "Release"},
+            labels={
+                "snapshot_date": "Snapshot date",
+                "listen_count": "Listens",
+                "series": "Release",
+            },
         )
-        st.plotly_chart(figure, width="stretch")
+        st.subheader("Release listens over time")
+        st.plotly_chart(fig, width="stretch")
         st.subheader("Chart data")
         st.dataframe(
             release_trend[
@@ -154,21 +162,26 @@ with album_tab:
         )
 
 with artist_tab:
-    st.subheader("Artist listens over time")
     artist_trend = artists[artists["artist_mbid"].isin(artist_ids)].copy()
     if artist_trend.empty:
+        st.subheader("Artist listens over time")
         st.info("Select one or more artists to show this chart.")
     else:
-        figure = px.line(
+        fig = px.line(
             artist_trend,
             x="snapshot_date",
             y="listen_count",
             color="artist_name",
             markers=True,
             hover_data=["artist_mbid"],
-            labels={"snapshot_date": "Snapshot date", "listen_count": "Listens", "artist_name": "Artist"},
+            labels={
+                "snapshot_date": "Snapshot date",
+                "listen_count": "Listens",
+                "artist_name": "Artist",
+            },
         )
-        st.plotly_chart(figure, width="stretch")
+        st.subheader("Artist listens over time")
+        st.plotly_chart(fig, width="stretch")
         st.subheader("Chart data")
         st.dataframe(
             artist_trend[
@@ -197,9 +210,7 @@ with both_tab:
         )
     if release_ids:
         release_series = releases[releases["release_mbid"].isin(release_ids)].copy()
-        release_series["series"] = (
-            "Release: " + release_series["release_name"] + " - " + release_series["artist_name"]
-        )
+        release_series["series"] = "Release: " + release_series["release_name"] + " - " + release_series["artist_name"]
         release_series["series_type"] = "Release"
         combined_series.append(
             release_series[["snapshot_date", "series", "series_type", "listen_count"]]
@@ -209,7 +220,7 @@ with both_tab:
         st.info("Select artists or releases to show the combined chart.")
     else:
         combined_trend = pd.concat(combined_series, ignore_index=True)
-        figure = px.line(
+        fig = px.line(
             combined_trend,
             x="snapshot_date",
             y="listen_count",
@@ -223,7 +234,7 @@ with both_tab:
                 "series_type": "Type",
             },
         )
-        st.plotly_chart(figure, width="stretch")
+        st.plotly_chart(fig, width="stretch")
         st.subheader("Chart data")
         st.dataframe(
             combined_trend.rename(
