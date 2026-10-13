@@ -30,18 +30,16 @@ def load_data(database_path):
     return artists, releases
 
 
-def get_date_bounds(dataframes):
+def get_snapshot_dates(dataframes):
     dates = pd.concat(
         [frame["snapshot_date"] for frame in dataframes if not frame.empty],
         ignore_index=True,
     )
-    return dates.min().date(), dates.max().date()
+    return sorted(dates.dt.date.unique())
 
 
-def filter_by_date(frame, start_date, end_date):
-    return frame[
-        (frame["snapshot_date"] >= start_date) & (frame["snapshot_date"] <= end_date)
-    ].copy()
+def filter_by_date(frame, selected_dates):
+    return frame[frame["snapshot_date"].dt.date.isin(selected_dates)].copy()
 
 
 def build_label_map(frame, key_field, label_format):
@@ -65,23 +63,17 @@ if artist_data.empty and release_data.empty:
     st.warning("The database has no listen-count snapshots yet.")
     st.stop()
 
-min_date, max_date = get_date_bounds((artist_data, release_data))
+available_dates = get_snapshot_dates((artist_data, release_data))
 
 st.sidebar.header("Filters")
-selected_date_range = st.sidebar.date_input(
-    "Snapshot date range",
-    value=(min_date, max_date),
-    min_value=min_date,
-    max_value=max_date,
+selected_dates = st.sidebar.multiselect(
+    "Snapshot dates",
+    options=available_dates,
+    default=available_dates,
+    format_func=lambda date: date.strftime("%b %d, %Y"),
 )
-
-if not isinstance(selected_date_range, tuple) or len(selected_date_range) != 2:
-    st.info("Select both a start date and an end date.")
-    st.stop()
-
-start_date, end_date = pd.to_datetime(selected_date_range)
-artists = filter_by_date(artist_data, start_date, end_date)
-releases = filter_by_date(release_data, start_date, end_date)
+artists = filter_by_date(artist_data, selected_dates)
+releases = filter_by_date(release_data, selected_dates)
 
 st.sidebar.divider()
 
@@ -113,7 +105,7 @@ selected_artists = st.sidebar.multiselect(
     default=list(artist_labels)[:8],
 )
 selected_releases = st.sidebar.multiselect(
-    "Releases",
+    "Albums",
     options=list(release_labels),
     default=list(release_labels)[:8],
 )
@@ -125,8 +117,8 @@ album_tab, artist_tab, both_tab = st.tabs(["Albums", "Artists", "Both"])
 with album_tab:
     release_trend = releases[releases["release_mbid"].isin(release_ids)].copy()
     if release_trend.empty:
-        st.subheader("Release listens over time")
-        st.info("Select one or more releases to show this chart.")
+        st.subheader("Album listens over time")
+        st.info("Select one or more albums to show this chart.")
     else:
         release_trend["series"] = release_trend["release_name"] + " - " + release_trend["artist_name"]
         fig = px.line(
@@ -137,12 +129,12 @@ with album_tab:
             markers=True,
             hover_data=["release_mbid"],
             labels={
-                "snapshot_date": "Snapshot date",
+                "snapshot_date": "Date",
                 "listen_count": "Listens",
                 "series": "Release",
             },
         )
-        st.subheader("Release listens over time")
+        st.subheader("Album listens over time")
         st.plotly_chart(fig, width="stretch")
         st.subheader("Chart data")
         st.dataframe(
@@ -150,7 +142,7 @@ with album_tab:
                 ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
             ].rename(
                 columns={
-                    "snapshot_date": "Snapshot date",
+                    "snapshot_date": "Date",
                     "release_name": "Album",
                     "artist_name": "Artist",
                     "listen_count": "Listens",
@@ -175,7 +167,7 @@ with artist_tab:
             markers=True,
             hover_data=["artist_mbid"],
             labels={
-                "snapshot_date": "Snapshot date",
+                "snapshot_date": "Date",
                 "listen_count": "Listens",
                 "artist_name": "Artist",
             },
@@ -188,7 +180,7 @@ with artist_tab:
                 ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
             ].rename(
                 columns={
-                    "snapshot_date": "Snapshot date",
+                    "snapshot_date": "Date",
                     "artist_name": "Artist",
                     "listen_count": "Listens",
                     "artist_mbid": "Artist MBID",
@@ -199,7 +191,7 @@ with artist_tab:
         )
 
 with both_tab:
-    st.subheader("Artist and release listens over time")
+    st.subheader("Artist and Album listens over time")
     combined_series = []
     if artist_ids:
         artist_series = artists[artists["artist_mbid"].isin(artist_ids)].copy()
@@ -210,14 +202,14 @@ with both_tab:
         )
     if release_ids:
         release_series = releases[releases["release_mbid"].isin(release_ids)].copy()
-        release_series["series"] = "Release: " + release_series["release_name"] + " - " + release_series["artist_name"]
-        release_series["series_type"] = "Release"
+        release_series["series"] = "Album: " + release_series["release_name"] + " - " + release_series["artist_name"]
+        release_series["series_type"] = "Album"
         combined_series.append(
             release_series[["snapshot_date", "series", "series_type", "listen_count"]]
         )
 
     if not combined_series:
-        st.info("Select artists or releases to show the combined chart.")
+        st.info("Select artists or albums to show the combined chart.")
     else:
         combined_trend = pd.concat(combined_series, ignore_index=True)
         fig = px.line(
@@ -228,9 +220,9 @@ with both_tab:
             line_dash="series_type",
             markers=True,
             labels={
-                "snapshot_date": "Snapshot date",
+                "snapshot_date": "Date",
                 "listen_count": "Listens",
-                "series": "Artist or release",
+                "series": "Artist or Album",
                 "series_type": "Type",
             },
         )
@@ -239,8 +231,8 @@ with both_tab:
         st.dataframe(
             combined_trend.rename(
                 columns={
-                    "snapshot_date": "Snapshot date",
-                    "series": "Artist or release",
+                    "snapshot_date": "Date",
+                    "series": "Artist or Album",
                     "series_type": "Type",
                     "listen_count": "Listens",
                 }
