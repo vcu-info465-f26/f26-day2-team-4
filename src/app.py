@@ -85,6 +85,17 @@ def compact_chart(fig):
 
 st.title("Listen Count Dashboard")
 
+summary_path = Path(__file__).resolve().parents[1] / "data" / "summary.md"
+
+if summary_path.is_file():
+    summary = summary_path.read_text(encoding="utf-8")
+    st.markdown(summary)
+else:
+    st.info("The AI music summary will appear after the next refresh.")
+
+st.divider()
+
+
 if not DB_PATH.is_file():
     st.error(f"Database not found: {DB_PATH}")
     st.stop()
