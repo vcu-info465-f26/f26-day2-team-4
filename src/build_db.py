@@ -2,6 +2,7 @@ import json
 import pathlib
 import sqlite3
 
+
 DATA_DIR = pathlib.Path("data")
 
 def build():

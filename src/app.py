@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from ai_report import make_report
 
 from build_db import build
 build()
@@ -45,6 +46,41 @@ def filter_by_date(frame, selected_dates):
 def build_label_map(frame, key_field, label_format):
     options = frame.drop_duplicates(key_field).sort_values("listen_count", ascending=False)
     return {label_format(row): getattr(row, key_field) for row in options.itertuples()}
+
+
+def build_report_heading(selected_dates, all_dates):
+    if not selected_dates:
+        return "Most listened to artist and album"
+
+    ordered_dates = sorted(selected_dates)
+    if len(ordered_dates) == len(all_dates) and all_dates:
+        return "Overall most listened to artist and album"
+
+    if len(ordered_dates) == 1:
+        return f"Most listened to artist and album for {ordered_dates[0].strftime('%b %d, %Y')}"
+
+    first_date = ordered_dates[0]
+    last_date = ordered_dates[-1]
+    return (
+        "Most listened to artist and album for "
+        f"{first_date.strftime('%b %d, %Y')} to {last_date.strftime('%b %d, %Y')}"
+    )
+
+
+def compact_chart(fig):
+    fig.update_layout(
+        height=320,
+        margin=dict(l=10, r=10, t=10, b=10),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0,
+            itemwidth=30,
+        ),
+    )
+    return fig
 
 
 st.title("Listen Count Dashboard")
@@ -112,6 +148,65 @@ selected_releases = st.sidebar.multiselect(
 artist_ids = [artist_labels[label] for label in selected_artists]
 release_ids = [release_labels[label] for label in selected_releases]
 
+report_df = pd.DataFrame()
+if artist_ids or release_ids:
+    report_frames = []
+    if artist_ids:
+        report_frames.append(artists[artists["artist_mbid"].isin(artist_ids)].copy())
+    if release_ids:
+        report_frames.append(releases[releases["release_mbid"].isin(release_ids)].copy())
+    if report_frames:
+        report_df = pd.concat(report_frames, ignore_index=True)
+
+if st.button("Generate AI Report"):
+    if report_df.empty:
+        st.warning("Select an artist or album before generating the report.")
+    else:
+        music_data = report_df.copy()
+
+        artist_summary = pd.DataFrame()
+        album_summary = pd.DataFrame()
+
+        if "artist_name" in music_data.columns:
+            artist_summary = (
+                music_data.groupby("artist_name", as_index=False)["listen_count"]
+                .sum()
+                .sort_values("listen_count", ascending=False)
+                .head(1)
+            )
+
+        if "release_name" in music_data.columns:
+            album_summary = (
+                music_data.groupby("release_name", as_index=False)["listen_count"]
+                .sum()
+                .sort_values("listen_count", ascending=False)
+                .head(1)
+            )
+
+        summary_rows = []
+        if not artist_summary.empty:
+            top_artist = artist_summary.iloc[0]
+            summary_rows.append({
+                "artist_name": top_artist["artist_name"],
+                "release_name": None,
+                "listen_count": int(top_artist["listen_count"]),
+            })
+        if not album_summary.empty:
+            top_album = album_summary.iloc[0]
+            summary_rows.append({
+                "artist_name": None,
+                "release_name": top_album["release_name"],
+                "listen_count": int(top_album["listen_count"]),
+            })
+
+        music_data = pd.DataFrame(summary_rows, columns=["artist_name", "release_name", "listen_count"])
+
+        st.subheader(build_report_heading(selected_dates, available_dates))
+        report, usage = make_report(music_data)
+        st.write(report)
+        if usage is not None:
+            st.write(usage.total_tokens)
+
 album_tab, artist_tab, both_tab = st.tabs(["Albums", "Artists", "Both"])
 
 with album_tab:
@@ -134,8 +229,9 @@ with album_tab:
                 "series": "Release",
             },
         )
+        fig = compact_chart(fig)
         st.subheader("Album listens over time")
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
         st.subheader("Chart data")
         st.dataframe(
             release_trend[
@@ -172,8 +268,9 @@ with artist_tab:
                 "artist_name": "Artist",
             },
         )
+        fig = compact_chart(fig)
         st.subheader("Artist listens over time")
-        st.plotly_chart(fig, width="stretch")
+        st.plotly_chart(fig, use_container_width=True)
         st.subheader("Chart data")
         st.dataframe(
             artist_trend[
@@ -210,8 +307,10 @@ with both_tab:
 
     if not combined_series:
         st.info("Select artists or albums to show the combined chart.")
+        filtered = pd.DataFrame()
     else:
         combined_trend = pd.concat(combined_series, ignore_index=True)
+        filtered = combined_trend.copy()
         fig = px.line(
             combined_trend,
             x="snapshot_date",
@@ -226,7 +325,8 @@ with both_tab:
                 "series_type": "Type",
             },
         )
-        st.plotly_chart(fig, width="stretch")
+        fig = compact_chart(fig)
+        st.plotly_chart(fig, use_container_width=True)
         st.subheader("Chart data")
         st.dataframe(
             combined_trend.rename(
