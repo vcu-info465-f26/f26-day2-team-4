@@ -1,0 +1,152 @@
+[
+  {
+    "artist_name":"BTS",
+    "artist_mbid":"0d79fe8e-ba27-4859-bb8c-2f255f346853",
+    "listen_count":515877
+  },
+  {
+    "artist_name":"Agust D",
+    "artist_mbid":"f09d2950-e3c6-47b2-b21c-2bad2cd3f616",
+    "listen_count":71369
+  },
+  {
+    "artist_name":"Jung Kook",
+    "artist_mbid":"23c8056b-ee13-4cfc-a772-2f5292e35bb5",
+    "listen_count":42902
+  },
+  {
+    "artist_name":"RM",
+    "artist_mbid":"58f1e354-ecbc-4fd3-aa25-97eb1d9bd8b9",
+    "listen_count":37648
+  },
+  {
+    "artist_name":"BTS",
+    "artist_mbid":null,
+    "listen_count":33640
+  },
+  {
+    "artist_name":"Jin",
+    "artist_mbid":"09720eec-3871-49d5-932d-eb7542768cd3",
+    "listen_count":32906
+  },
+  {
+    "artist_name":"j\u2010hope",
+    "artist_mbid":"b3977da4-f899-4328-921b-ecc599a5618a",
+    "listen_count":31958
+  },
+  {
+    "artist_name":"V",
+    "artist_mbid":"83096042-3785-481e-8843-dee69f1aad12",
+    "listen_count":31263
+  },
+  {
+    "artist_name":"Jimin",
+    "artist_mbid":"d2582c77-6b0f-4b2f-802f-8f3cad1a5fec",
+    "listen_count":26715
+  },
+  {
+    "artist_name":"RM, Youjeen",
+    "artist_mbid":null,
+    "listen_count":24182
+  },
+  {
+    "artist_name":"Linkin Park",
+    "artist_mbid":"f59c5520-5f46-4d2c-b2c4-822eabf53419",
+    "listen_count":23576
+  },
+  {
+    "artist_name":"Latto",
+    "artist_mbid":"355cc194-b8db-4af2-8678-c7ad54213f4b",
+    "listen_count":19683
+  },
+  {
+    "artist_name":"Radiohead",
+    "artist_mbid":"a74b1b7f-71a5-4011-9441-d0b5e4122711",
+    "listen_count":19013
+  },
+  {
+    "artist_name":"RM",
+    "artist_mbid":null,
+    "listen_count":17845
+  },
+  {
+    "artist_name":"Carly Rae Jepsen",
+    "artist_mbid":"09887aa7-226e-4ecc-9a0c-02d2ae5777e1",
+    "listen_count":17100
+  },
+  {
+    "artist_name":"Ye",
+    "artist_mbid":"164f0d73-1234-4e2c-8743-d77bf2191051",
+    "listen_count":17006
+  },
+  {
+    "artist_name":"Taylor Swift",
+    "artist_mbid":"20244d07-534f-4eff-b4d4-930878889970",
+    "listen_count":15030
+  },
+  {
+    "artist_name":"Toby Fox",
+    "artist_mbid":"1c26f82c-b35d-4c8e-a1f4-9c20747495c9",
+    "listen_count":14492
+  },
+  {
+    "artist_name":"Kendrick Lamar",
+    "artist_mbid":"381086ea-f511-4aba-bdf9-71c753dc5077",
+    "listen_count":12576
+  },
+  {
+    "artist_name":"GloRilla",
+    "artist_mbid":"2a7ef045-ca10-4cb5-8fe9-1f5d38e84bc2",
+    "listen_count":12267
+  },
+  {
+    "artist_name":"The Beatles",
+    "artist_mbid":"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+    "listen_count":12130
+  },
+  {
+    "artist_name":"The Weeknd",
+    "artist_mbid":"c8b03190-306c-4120-bb0b-6f2ebfc06ea9",
+    "listen_count":12014
+  },
+  {
+    "artist_name":"j-hope, GloRilla",
+    "artist_mbid":null,
+    "listen_count":11749
+  },
+  {
+    "artist_name":"\ubc15\ud6a8\uc2e0",
+    "artist_mbid":"e941e097-0f9e-496d-a381-dd74a953682c",
+    "listen_count":11624
+  },
+  {
+    "artist_name":"Tame Impala",
+    "artist_mbid":"63aa26c3-d59b-4da4-84ac-716b54f1ef4d",
+    "listen_count":11179
+  },
+  {
+    "artist_name":"Eminem",
+    "artist_mbid":"b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
+    "listen_count":11061
+  },
+  {
+    "artist_name":"Charli xcx",
+    "artist_mbid":"260b6184-8828-48eb-945c-bc4cb6fc34ca",
+    "listen_count":10850
+  },
+  {
+    "artist_name":"My Chemical Romance",
+    "artist_mbid":"c07f0676-9143-4217-8a9f-4c26bd636f13",
+    "listen_count":10729
+  },
+  {
+    "artist_name":"Olivia Rodrigo",
+    "artist_mbid":"6925db17-f35e-42f3-a4eb-84ee6bf5d4b0",
+    "listen_count":10727
+  },
+  {
+    "artist_name":"twenty one pilots",
+    "artist_mbid":"a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+    "listen_count":10268
+  }
+]

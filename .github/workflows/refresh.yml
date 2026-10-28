@@ -20,9 +20,14 @@ jobs:
           python-version: "3.12"
 
       - run: pip install -r requirements.txt
+      - run: pip install groq
 
       - name: Fetch today's snapshot
         run: python src/fetch.py
+      - name: Generate music summary
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python src/summarize.py
 
       - name: Commit the snapshot
         run: |
