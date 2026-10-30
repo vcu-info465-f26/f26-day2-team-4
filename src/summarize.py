@@ -101,10 +101,10 @@ def make_report(music_data):
 
 def save_summary(music_data, report):
     summary = (
-        "# Music Listening Summary\n\n"
-        "## Listening Statistics\n\n"
+        "## Music Listening Summary\n\n"
+        "### Listening Statistics\n\n"
         f"{music_data}\n\n"
-        "## AI Summary\n\n"
+        "### AI Summary\n\n"
         f"{report}\n"
     )
 
