@@ -1,12 +1,16 @@
 import sqlite3
+from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-from ai_report import make_report
+from groq import GroqError
+from ai_report import ask_question, make_report
 
 from build_db import build
+
+
 build()
 
 DB_PATH = Path(__file__).resolve().parents[1] / "project.db"
@@ -67,9 +71,66 @@ def build_report_heading(selected_dates, all_dates):
     )
 
 
+def previous_week_bounds(today=None):
+    today = today or date.today()
+    this_week_start = today - timedelta(days=today.weekday())
+    return this_week_start - timedelta(days=7), this_week_start - timedelta(days=1)
+
+
+def latest_snapshot_in_week(frame, week_start, week_end):
+    in_week = frame[frame["snapshot_date"].dt.date.between(week_start, week_end)]
+    if in_week.empty:
+        return in_week.copy()
+
+    latest_date = in_week["snapshot_date"].max()
+    return in_week[in_week["snapshot_date"] == latest_date].copy()
+
+
+def build_report_data(artist_data, release_data):
+    summary_rows = []
+
+    if not artist_data.empty:
+        top_artist = (
+            artist_data.groupby(
+                ["snapshot_date", "artist_mbid", "artist_name"], as_index=False
+            )["listen_count"]
+            .sum()
+            .sort_values("listen_count", ascending=False)
+            .iloc[0]
+        )
+        summary_rows.append({
+            "snapshot_date": top_artist["snapshot_date"].date().isoformat(),
+            "artist_name": top_artist["artist_name"],
+            "release_name": None,
+            "listen_count": int(top_artist["listen_count"]),
+        })
+
+    if not release_data.empty:
+        top_album = (
+            release_data.groupby(
+                ["snapshot_date", "release_mbid", "release_name", "artist_name"],
+                as_index=False,
+            )["listen_count"]
+            .sum()
+            .sort_values("listen_count", ascending=False)
+            .iloc[0]
+        )
+        summary_rows.append({
+            "snapshot_date": top_album["snapshot_date"].date().isoformat(),
+            "artist_name": None,
+            "release_name": top_album["release_name"],
+            "listen_count": int(top_album["listen_count"]),
+        })
+
+    return pd.DataFrame(
+        summary_rows,
+        columns=["snapshot_date", "artist_name", "release_name", "listen_count"],
+    )
+
+
 def compact_chart(fig):
     fig.update_layout(
-        height=320,
+        height=450,
         margin=dict(l=10, r=10, t=10, b=10),
         legend=dict(
             orientation="h",
@@ -126,13 +187,14 @@ st.sidebar.divider()
 
 if artists.empty and releases.empty:
     st.info("No snapshots match the selected date range.")
-    st.stop()
-
-latest_date = max(
-    [frame["snapshot_date"].max() for frame in (artists, releases) if not frame.empty]
-)
-latest_artists = artists[artists["snapshot_date"] == latest_date]
-latest_releases = releases[releases["snapshot_date"] == latest_date]
+    latest_artists = artists
+    latest_releases = releases
+else:
+    latest_date = max(
+        [frame["snapshot_date"].max() for frame in (artists, releases) if not frame.empty]
+    )
+    latest_artists = artists[artists["snapshot_date"] == latest_date]
+    latest_releases = releases[releases["snapshot_date"] == latest_date]
 
 artist_labels = build_label_map(
     latest_artists,
@@ -159,64 +221,14 @@ selected_releases = st.sidebar.multiselect(
 artist_ids = [artist_labels[label] for label in selected_artists]
 release_ids = [release_labels[label] for label in selected_releases]
 
-report_df = pd.DataFrame()
-if artist_ids or release_ids:
-    report_frames = []
-    if artist_ids:
-        report_frames.append(artists[artists["artist_mbid"].isin(artist_ids)].copy())
-    if release_ids:
-        report_frames.append(releases[releases["release_mbid"].isin(release_ids)].copy())
-    if report_frames:
-        report_df = pd.concat(report_frames, ignore_index=True)
-
-if st.button("Generate AI Report"):
-    if report_df.empty:
-        st.warning("Select an artist or album before generating the report.")
-    else:
-        music_data = report_df.copy()
-
-        artist_summary = pd.DataFrame()
-        album_summary = pd.DataFrame()
-
-        if "artist_name" in music_data.columns:
-            artist_summary = (
-                music_data.groupby("artist_name", as_index=False)["listen_count"]
-                .sum()
-                .sort_values("listen_count", ascending=False)
-                .head(1)
-            )
-
-        if "release_name" in music_data.columns:
-            album_summary = (
-                music_data.groupby("release_name", as_index=False)["listen_count"]
-                .sum()
-                .sort_values("listen_count", ascending=False)
-                .head(1)
-            )
-
-        summary_rows = []
-        if not artist_summary.empty:
-            top_artist = artist_summary.iloc[0]
-            summary_rows.append({
-                "artist_name": top_artist["artist_name"],
-                "release_name": None,
-                "listen_count": int(top_artist["listen_count"]),
-            })
-        if not album_summary.empty:
-            top_album = album_summary.iloc[0]
-            summary_rows.append({
-                "artist_name": None,
-                "release_name": top_album["release_name"],
-                "listen_count": int(top_album["listen_count"]),
-            })
-
-        music_data = pd.DataFrame(summary_rows, columns=["artist_name", "release_name", "listen_count"])
-
-        st.subheader(build_report_heading(selected_dates, available_dates))
-        report, usage = make_report(music_data)
-        st.write(report)
-        if usage is not None:
-            st.write(usage.total_tokens)
+selected_artist_data = artists[artists["artist_mbid"].isin(artist_ids)].copy()
+selected_release_data = releases[releases["release_mbid"].isin(release_ids)].copy()
+report_frames = [
+    frame
+    for frame in (selected_artist_data, selected_release_data)
+    if not frame.empty
+]
+report_df = pd.concat(report_frames, ignore_index=True) if report_frames else pd.DataFrame()
 
 album_tab, artist_tab, both_tab = st.tabs(["Albums", "Artists", "Both"])
 
@@ -241,9 +253,9 @@ with album_tab:
             },
         )
         fig = compact_chart(fig)
-        st.subheader("Album listens over time")
-        st.plotly_chart(fig, use_container_width=True)
-        st.subheader("Chart data")
+        st.subheader("Album Listens Over Time")
+        st.plotly_chart(fig, width="stretch", height=450)
+        st.subheader("Music Data")
         st.dataframe(
             release_trend[
                 ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
@@ -263,7 +275,7 @@ with album_tab:
 with artist_tab:
     artist_trend = artists[artists["artist_mbid"].isin(artist_ids)].copy()
     if artist_trend.empty:
-        st.subheader("Artist listens over time")
+        st.subheader("Artist Listens Over Time")
         st.info("Select one or more artists to show this chart.")
     else:
         fig = px.line(
@@ -280,9 +292,9 @@ with artist_tab:
             },
         )
         fig = compact_chart(fig)
-        st.subheader("Artist listens over time")
-        st.plotly_chart(fig, use_container_width=True)
-        st.subheader("Chart data")
+        st.subheader("Artist Listens Over Time")
+        st.plotly_chart(fig, width="stretch",height=450)
+        st.subheader("Music Data")
         st.dataframe(
             artist_trend[
                 ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
@@ -299,7 +311,7 @@ with artist_tab:
         )
 
 with both_tab:
-    st.subheader("Artist and Album listens over time")
+    st.subheader("Artist and Album Listens Over Time")
     combined_series = []
     if artist_ids:
         artist_series = artists[artists["artist_mbid"].isin(artist_ids)].copy()
@@ -337,8 +349,8 @@ with both_tab:
             },
         )
         fig = compact_chart(fig)
-        st.plotly_chart(fig, use_container_width=True)
-        st.subheader("Chart data")
+        st.plotly_chart(fig, width="stretch")
+        st.subheader("Music Data")
         st.dataframe(
             combined_trend.rename(
                 columns={
@@ -351,3 +363,42 @@ with both_tab:
             width="stretch",
             hide_index=True,
         )
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+question = st.chat_input("Ask a question about the music artists and albums!")
+if question:
+    st.session_state.messages.append({"role": "user", "content": question})
+    if report_df.empty:
+        st.warning("Select at least one artist or album before asking a question.")
+    else:
+        try:
+            answer = ask_question(report_df.tail(50), st.session_state.messages)
+        except GroqError as error:
+            st.error(f"Could not get an answer from the AI service: {error}")
+        else:
+            st.session_state.messages.append({"role": "assistant", "content": answer})
+
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
+
+if st.button("Generate AI Report"):
+    st.subheader("AI Listen Tracking Report")
+    week_start, week_end = previous_week_bounds()
+    weekly_artists = latest_snapshot_in_week(artist_data, week_start, week_end)
+    weekly_releases = latest_snapshot_in_week(release_data, week_start, week_end)
+    st.caption(
+        f"Previous week: {week_start.strftime('%b %d, %Y')} – "
+        f"{week_end.strftime('%b %d, %Y')}"
+    )
+    report_data = build_report_data(weekly_artists, weekly_releases)
+    if report_data.empty:
+        st.warning("No artist or album snapshots were taken during the previous week.")
+    else:
+        snapshot_dates = ", ".join(sorted(report_data["snapshot_date"].unique()))
+        st.caption(f"Using the latest available snapshot(s): {snapshot_dates}")
+        report, usage = make_report(report_data)
+        st.write(report)
+        if usage is not None:
+            st.write(usage.total_tokens)
