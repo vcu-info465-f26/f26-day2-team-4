@@ -32,7 +32,7 @@ def make_report(music_data):
     user_prompt = (
         f"Selected artist(s): {selected_artists}\n"
         f"Selected album(s): {selected_albums}\n\n"
-        "Identify the artist with the highest listen_count and the album with the highest listen_count. "
+        "Identify the artist with the highest listencount and the album with the highest listen count. "
         "Return the artist name, artist count, album name, and album count.\n\n"
         f"Data:\n{music_data.to_string(index=False)}"
     )
@@ -47,8 +47,8 @@ def make_report(music_data):
                 "content": (
                     "You are a data analyst. Answer the question using the selected filter. "
                     "Report the artist with the highest listen_count and the album with the highest listen_count, "
-                    "including each name and its count. "
-                    "Match the date and value shown in the data. "
+                    "including each name, its count, and the snapshot_date shown in the data. "
+                    "Do not infer listen-count changes between snapshots. "
                     "If the dashboard does not cover the requested information, say 'I don't have that.'"
                 ),
             },
@@ -63,6 +63,22 @@ def make_report(music_data):
     report = response.choices[0].message.content
     usage = getattr(response, "usage", None)
     return report, usage
+
+def ask_question(music_data, messages):
+    client=Groq(
+    api_key=os.environ.get("GROQ_API_KEY")
+    )
+
+    response=client.chat.completions.create(
+        model="openai/gpt-oss-120b",
+        messages=[
+        {"role":"system",
+         "content":"Answer using only the artist and album data. If it is not in the data say so.\n"
+                    +music_data.to_string(index=False)}
+        ]+messages, 
+        reasoning_effort="low"
+    )
+    return response.choices[0].message.content
 
 
 if __name__ == "__main__":
