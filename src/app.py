@@ -374,7 +374,7 @@ if question:
         st.warning("Select at least one artist or album before asking a question.")
     else:
         try:
-            answer = ask_question(report_df.tail(50), st.session_state.messages)
+            answer = ask_question(report_df.tail(80), st.session_state.messages)
         except GroqError as error:
             st.error(f"Could not get an answer from the AI service: {error}")
         else:
