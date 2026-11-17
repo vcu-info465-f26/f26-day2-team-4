@@ -2,7 +2,7 @@
 
 ### Listening Statistics
 
-Snapshot Date: 2026-11-15
+Snapshot Date: 2026-11-17
 
 Top 5 Artists:
 - BTS: 535194 listens
@@ -20,40 +20,67 @@ Top 5 Albums:
 
 ### AI Summary
 
-**ListenBrainz Snapshot – 15 Nov 2026**
+**Snapshot Date:** 2026‑11‑17  
+**Source:** ListenBrainz cumulative listen counts
 
-**Who dominates the stream?**  
-BTS sits far ahead of everything else with **535 k** total listens – roughly five times the next‑biggest name. The solo projects of the group members also rank highly, but each trails the band’s aggregate by a wide margin:
+---
 
-| Artist | Listens | Share of Top‑5 total |
-|--------|---------|----------------------|
-| **BTS** | 535 194 | 71 % |
-| Agust D (Suga) | 94 748 | 13 % |
-| Jimin | 71 164 | 9 % |
-| Jung Kook | 48 299 | 6 % |
-| j‑hope | 48 020 | 6 % |
+### Quick glance
+- **BTS** dominates the scene with **535 k** total plays, dwarfing the next‑most‑listened artist (Agust D) by more than five‑fold.  
+- The solo projects of the BTS members (Agust D, Jimin, Jung Kook and j‑hope) together account for roughly **260 k** listens—about half of the BTS total—showing a strong “BTS‑family” listening habit.  
+- Album‑level data mirrors this split: the group’s album *ARIRANG* alone garners **≈ 361 k** plays, while the solo albums of Agust D, Jimin and Jung Kook together contribute just over **150 k** listens.
 
-The four solo acts together account for just under 30 % of the top‑5 listening volume, confirming that most fans still gravitate toward the full group experience.
+---
 
-**What are they listening to?**  
-The album chart mirrors the artist hierarchy, but with a few nuances:
+## Artists
 
-| Album (Artist) | Listens | Notable point |
-|----------------|---------|---------------|
-| **ARIRANG** – BTS | 280 189 | By far the most‑played album, representing about 37 % of all top‑5 album listens. |
-| **ARIRANG** – BTS (second entry) | 81 347 | A separate count – likely a different edition (e.g., deluxe, digital vs. physical) that still draws massive attention. |
-| **D‑DAY** – Agust D | 59 589 | The solo album of Suga’s alter‑ego, ranking third overall and out‑listening any solo release from Jimin, Jung Kook or j‑hope. |
-| **Muse** – Jimin | 47 980 | Jimin’s solo effort lands fourth, roughly 80 % of the D‑DAY total. |
-| **GOLDEN** – Jung Kook | 41 081 | Jung Kook’s debut solo album is the fifth‑most‑listened, edging out j‑hope’s releases (which do not appear in the top‑5 albums list). |
+| Rank | Artist | Listens |
+|------|--------|---------|
+| 1 | **BTS** | 535 194 |
+| 2 | **Agust D** (RM’s solo project) | 94 748 |
+| 3 | **Jimin** | 71 164 |
+| 4 | **Jung Kook** | 48 299 |
+| 5 | **j‑hope** | 48 020 |
 
-**Key take‑aways**
+**What stands out**
 
-1. **BTS’s collective pull is overwhelming.** The group’s flagship album *ARIRANG* alone accounts for more than a third of all top‑5 album listens, and even a secondary listing of the same album adds another 81 k plays, underscoring the album’s multi‑format popularity.
+1. **BTS is the clear leader.** With more than half a million total plays, the group’s collective catalog is the primary driver of listening activity.  
+2. **Solo work is substantial but clearly secondary.** Agust D’s solo output alone attracts almost 95 k listens—roughly 18 % of BTS’s total—while Jimin, Jung Kook, and j‑hope each sit between 48 k and 71 k listens.  
+3. **Even the “least‑listened‑to” BTS member in this top‑5 (j‑hope) still outperforms many independent artists**, underscoring the fanbase’s appetite for any material tied to the group.
 
-2. **Solo success follows the group’s internal hierarchy.** Agust D (Suga) leads the solo field with *D‑DAY* and the highest solo‑artist listen count. Jimin and Jung Kook follow, while j‑hope, despite a respectable 48 k artist total, does not break into the top‑5 albums – suggesting his listeners may be streaming singles, playlists, or non‑album material.
+---
 
-3. **Multiple entries for the same album hint at version‑specific listening.** The two separate counts for *ARIRANG* (280 k vs. 81 k) likely represent distinct releases (e.g., standard vs. deluxe, Korean vs. Japanese edition, or streaming vs. purchased tracks). Together they push the total *ARIRANG* footprint above 360 k listens, dwarfing any other release.
+## Albums
 
-4. **Solo projects still capture a sizable share.** Combined, the four solo albums contribute roughly 228 k listens—about 39 % of the total top‑5 album volume—demonstrating that while BTS remains the core, the members’ individual ventures are resonating strongly with the audience.
+| Rank | Album (Artist) | Listens |
+|------|----------------|---------|
+| 1 | **ARIRANG** – BTS | 280 189 |
+| 2 | **ARIRANG** – BTS (second entry) | 81 347 |
+| 3 | **D‑DAY** – Agust D | 59 589 |
+| 4 | **Muse** – Jimin | 47 980 |
+| 5 | **GOLDEN** – Jung Kook | 41 081 |
 
-In short, the data paints a picture of a fanbase anchored to BTS’s group catalog, with a clear secondary tier of dedicated listeners who follow the members’ solo discographies—especially Suga’s *D‑DAY*—and who are attentive enough to seek out multiple versions of the same BTS album.
+**What stands out**
+
+- **Two entries for *ARIRANG***: The same BTS album appears twice with different listen counts (280 k and 81 k). Adding them together gives **≈ 361 k** total plays for *ARIRANG*, making it by far the most‑streamed album in this snapshot. The split likely reflects separate recordings (e.g., a standard edition vs. a deluxe/repackaged version) that ListenBrainz tracks independently.  
+- **Solo albums are well‑represented**: After the two *ARIRANG* entries, the next three spots belong to solo releases from BTS members—Agust D’s *D‑DAY*, Jimin’s *Muse*, and Jung Kook’s *GOLDEN*. Their combined listens (≈ 148 k) are roughly 41 % of the total listens for *ARIRANG* alone, echoing the artist‑level pattern.  
+- **No solo album from j‑hope makes the top‑5**, despite his presence in the top‑5 artists list, indicating that his most‑played tracks may be scattered across singles, collaborations, or non‑album releases rather than a single album.
+
+---
+
+## Comparative takeaways
+
+| Metric | BTS (group) | BTS solo artists (combined) |
+|--------|-------------|-----------------------------|
+| Total artist listens | 535 k | ~236 k (Agust D + Jimin + Jung Kook + j‑hope) |
+| Top album listens (group) | 361 k (*ARIRANG* combined) | 148 k (top three solo albums) |
+| Share of total top‑5 listens | ~69 % | ~31 % |
+
+- **The group’s collective catalogue still commands the majority of listening time**, but the solo side is far from marginal—roughly one‑third of the top‑5 activity comes from individual members.  
+- **Fans appear to treat the BTS brand as a single ecosystem**, streaming both the group’s releases and any member’s solo work with comparable enthusiasm.  
+- The duplicate *ARIRANG* entries hint at the importance of version‑specific tracking; when combined, the album’s dominance is even clearer.
+
+---
+
+### Bottom line
+The ListenBrainz snapshot paints a picture of a fanbase that is heavily centered on BTS as a group, yet consistently supports solo ventures by its members. The group’s flagship album *ARIRANG* towers above the rest, while solo albums from Agust D, Jimin, and Jung Kook hold respectable, though secondary, positions. The data underscores a balanced listening habit: a core devotion to the collective sound, complemented by a strong appetite for individual members’ creative off‑shoots.
