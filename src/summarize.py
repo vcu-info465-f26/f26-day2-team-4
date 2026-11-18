@@ -77,13 +77,18 @@ def make_report(music_data):
                 "role": "system",
                 "content": (
                     "You are a music listening analyst. "
-                    "Write a short and interesting summary of "
+                    "Write a clear and concise summary of "
                     "the provided ListenBrainz music statistics. "
-                    "Discuss the most listened to artists and albums "
-                    "and any noticeable differences between them. "
+                    "Use only 2 to 3 short sentences and no more "
+                    "than 60 words. "
+                    "Identify the most listened to artist and album, "
+                    "including their listen counts. "
+                    "Briefly mention any noticeable difference "
+                    "between the top artist and album if relevant. "
                     "The counts are cumulative as of the snapshot date. "
                     "Only use the provided data. "
-                    "Do not make up statistics or information."
+                    "Do not make up statistics or information. "
+                    "Avoid unnecessary details, headings, and bullet points. "
                 )
             },
             {
@@ -102,9 +107,6 @@ def make_report(music_data):
 def save_summary(music_data, report):
     summary = (
         "## Music Listening Summary\n\n"
-        "### Listening Statistics\n\n"
-        f"{music_data}\n\n"
-        "### AI Summary\n\n"
         f"{report}\n"
     )
 
@@ -122,4 +124,4 @@ if __name__ == "__main__":
     build()
     music_data = get_music_stats()
     report = make_report(music_data)
-    save_summary(music_data, report)
+    save_summary(report)
