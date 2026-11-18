@@ -238,7 +238,14 @@ with album_tab:
         st.subheader("Album listens over time")
         st.info("Select one or more albums to show this chart.")
     else:
-        release_trend["series"] = release_trend["release_name"] + " - " + release_trend["artist_name"]
+        release_trend["series"] = (
+    release_trend["release_name"]
+    + " - "
+    + release_trend["artist_name"]
+    + " ["
+    + release_trend["release_mbid"].str[:8]
+    + "]"
+)
         fig = px.line(
             release_trend,
             x="snapshot_date",
