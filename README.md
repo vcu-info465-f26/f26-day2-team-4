@@ -21,3 +21,7 @@ If summary generation fails, the workflow continues to commit the new snapshot, 
 - GitHub repository secret: `GROQ_API_KEY`
 - GitHub organization secret used by the workflow: `REFRESH_TOKEN1`
 - Streamlit Community Cloud app secret: `GROQ_API_KEY`
+
+## Sprint 4: Dashboard updates
+
+The dashboard includes a short introduction and music imagery to help first-time visitors understand the page. The summary is concise and shows the date range it covers. Album chart labels include a short release MBID so releases with the same album and artist name appear as separate lines.
