@@ -104,7 +104,7 @@ def make_report(music_data):
     return report
 
 
-def save_summary(music_data, report):
+def save_summary(report):
     summary = (
         "## Music Listening Summary\n\n"
         f"{report}\n"
