@@ -323,6 +323,12 @@ def compact_chart(fig):
     return fig
 
 
+def format_music_data_dates(frame):
+    display_frame = frame.copy()
+    display_frame["snapshot_date"] = display_frame["snapshot_date"].dt.strftime("%Y-%m-%d")
+    return display_frame
+
+
 st.title("🎵 Listen Count Dashboard 🎵")
 
 st.caption("This dashboard uses data from the ListenBrainz API "
@@ -501,9 +507,11 @@ with album_tab:
         st.plotly_chart(fig, width="stretch", height=450)
         st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            release_trend[
-                ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
-            ].rename(
+            format_music_data_dates(
+                release_trend[
+                    ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
+                ]
+            ).rename(
                 columns={
                     "snapshot_date": "Date",
                     "release_name": "Album",
@@ -540,9 +548,11 @@ with artist_tab:
         st.plotly_chart(fig, width="stretch",height=450)
         st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            artist_trend[
-                ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
-            ].rename(
+            format_music_data_dates(
+                artist_trend[
+                    ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
+                ]
+            ).rename(
                 columns={
                     "snapshot_date": "Date",
                     "artist_name": "Artist",
@@ -596,7 +606,7 @@ with both_tab:
         st.plotly_chart(fig, width="stretch")
         st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            combined_trend.rename(
+            format_music_data_dates(combined_trend).rename(
                 columns={
                     "snapshot_date": "Date",
                     "series": "Artist or Album",
