@@ -1,9 +1,11 @@
 import sqlite3
+import time
 from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import requests
 import streamlit as st
 from groq import GroqError
 from ai_report import ask_question, make_report
@@ -33,6 +35,183 @@ def load_data(database_path):
     artists["snapshot_date"] = pd.to_datetime(artists["snapshot_date"])
     releases["snapshot_date"] = pd.to_datetime(releases["snapshot_date"])
     return artists, releases
+
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def get_artist_image(artist_name):
+    try:
+        response = requests.get(
+            "https://en.wikipedia.org/w/api.php",
+            params={
+                "action": "query",
+                "generator": "search",
+                "gsrsearch": f'"{artist_name}" musician',
+                "gsrlimit": 1,
+                "prop": "pageimages",
+                "piprop": "thumbnail",
+                "pithumbsize": 250,
+                "format": "json",
+                "redirects": 1,
+            },
+            headers={"User-Agent": "ListenCountDashboard/1.0 (music summary)"},
+            timeout=8,
+        )
+        response.raise_for_status()
+        pages = response.json().get("query", {}).get("pages", {})
+        image_url = next(
+            (
+                page["thumbnail"]["source"]
+                for page in pages.values()
+                if page.get("thumbnail", {}).get("source")
+            ),
+            None,
+        )
+        return image_url, None
+    except requests.RequestException as error:
+        return None, str(error)
+
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def get_artist_image_by_mbid(artist_mbid):
+    headers = {
+        "User-Agent": "ListenCountDashboard/1.0 (https://github.com/vcu-info465-f26/f26-day2-team-4)"
+    }
+
+    try:
+        time.sleep(1.1)
+        artist_response = requests.get(
+            f"https://musicbrainz.org/ws/2/artist/{artist_mbid}",
+            params={"inc": "url-rels", "fmt": "json"},
+            headers=headers,
+            timeout=8,
+        )
+        if artist_response.status_code == 404:
+            return None, None
+        artist_response.raise_for_status()
+        wikidata_url = next(
+            (
+                relation["url"]["resource"]
+                for relation in artist_response.json().get("relations", [])
+                if relation.get("type") == "wikidata"
+                and (relation.get("url") or {}).get("resource")
+            ),
+            None,
+        )
+        if not wikidata_url:
+            return None, None
+
+        wikidata_id = wikidata_url.rstrip("/").rsplit("/", 1)[-1]
+        wikidata_response = requests.get(
+            "https://www.wikidata.org/w/api.php",
+            params={
+                "action": "wbgetentities",
+                "ids": wikidata_id,
+                "props": "claims",
+                "format": "json",
+            },
+            headers=headers,
+            timeout=8,
+        )
+        wikidata_response.raise_for_status()
+        entities = wikidata_response.json().get("entities", {})
+        image_claims = (
+            entities.get(wikidata_id, {}).get("claims", {}).get("P18", [])
+        )
+        image_name = next(
+            (
+                claim.get("mainsnak", {})
+                .get("datavalue", {})
+                .get("value")
+                for claim in image_claims
+                if claim.get("mainsnak", {}).get("datavalue", {}).get("value")
+            ),
+            None,
+        )
+        if not image_name:
+            return None, None
+
+        commons_response = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params={
+                "action": "query",
+                "titles": f"File:{image_name}",
+                "prop": "imageinfo",
+                "iiprop": "url",
+                "iiurlwidth": 250,
+                "format": "json",
+            },
+            headers=headers,
+            timeout=8,
+        )
+        commons_response.raise_for_status()
+        pages = commons_response.json().get("query", {}).get("pages", {})
+        image_url = next(
+            (
+                image_info["thumburl"]
+                for page in pages.values()
+                for image_info in page.get("imageinfo", [])
+                if image_info.get("thumburl")
+            ),
+            None,
+        )
+        return image_url, None
+    except requests.RequestException as error:
+        return None, str(error)
+
+
+def get_local_album_cover(release_mbid):
+    cover_dir = Path(__file__).resolve().parent / "assets" / "album_covers"
+    if not cover_dir.is_dir():
+        return None
+
+    local_covers = [
+        path
+        for path in cover_dir.iterdir()
+        if path.is_file()
+        and path.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}
+        and release_mbid.lower().startswith(path.stem.lower())
+    ]
+    if not local_covers:
+        return None
+
+    return str(max(local_covers, key=lambda path: len(path.stem)))
+
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def get_remote_album_cover(release_mbid):
+    image_url = (
+        f"https://coverartarchive.org/release/{release_mbid}/front-1200"
+    )
+    try:
+        response = requests.head(image_url, allow_redirects=True, timeout=8)
+        if response.status_code == 404:
+            return None, None
+        response.raise_for_status()
+        return image_url, None
+    except requests.RequestException as error:
+        return None, str(error)
+
+
+def get_album_cover(release_mbid):
+    local_cover = get_local_album_cover(release_mbid)
+    if local_cover:
+        return local_cover, None
+    return get_remote_album_cover(release_mbid)
+
+
+def get_ranked_artist_image(artist_name, artist_mbid):
+    image_url, image_error = get_artist_image(artist_name)
+    if image_url:
+        return image_url, None
+
+    if artist_mbid:
+        mbid_image_url, mbid_error = get_artist_image_by_mbid(artist_mbid)
+        if mbid_image_url:
+            return mbid_image_url, None
+        if mbid_error:
+            return None, mbid_error
+
+    return None, image_error
 
 
 def get_snapshot_dates(dataframes):
@@ -144,10 +323,19 @@ def compact_chart(fig):
     return fig
 
 
-st.title("Listen Count Dashboard")
+def format_music_data_dates(frame):
+    display_frame = frame.copy()
+    display_frame["snapshot_date"] = display_frame["snapshot_date"].dt.strftime("%Y-%m-%d")
+    return display_frame
+
+
+st.title("🎵 Listen Count Dashboard 🎵")
+
+st.caption("This dashboard uses data from the ListenBrainz API "
+"to track music trends, including popular artists, albums,"
+" and the duration of their popularity over time.")
 
 summary_path = Path(__file__).resolve().parents[1] / "data" / "summary.md"
-
 if summary_path.is_file():
     summary = summary_path.read_text(encoding="utf-8")
     st.markdown(summary)
@@ -155,7 +343,6 @@ else:
     st.info("The AI music summary will appear after the next refresh.")
 
 st.divider()
-
 
 if not DB_PATH.is_file():
     st.error(f"Database not found: {DB_PATH}")
@@ -170,6 +357,62 @@ except sqlite3.Error as error:
 if artist_data.empty and release_data.empty:
     st.warning("The database has no listen-count snapshots yet.")
     st.stop()
+
+artist_dates = set(artist_data["snapshot_date"].dt.date)
+release_dates = set(release_data["snapshot_date"].dt.date)
+shared_dates = artist_dates & release_dates
+summary_dates = shared_dates or artist_dates or release_dates
+summary_snapshot_date = max(summary_dates)
+summary_artists = (
+    artist_data[artist_data["snapshot_date"].dt.date == summary_snapshot_date]
+    .sort_values("listen_count", ascending=False)
+    .head(5)
+)
+summary_releases = (
+    release_data[release_data["snapshot_date"].dt.date == summary_snapshot_date]
+    .sort_values("listen_count", ascending=False)
+    .head(5)
+)
+
+st.subheader("Artist and Album Rankings")
+st.caption(f"Snapshot date: {summary_snapshot_date.strftime('%b %d, %Y')}")
+artist_column, album_column = st.columns(2)
+
+with artist_column:
+    st.markdown("#### Artists")
+    for rank, artist in enumerate(summary_artists.itertuples(), start=1):
+        image_url, image_error = get_ranked_artist_image(
+            artist.artist_name, artist.artist_mbid
+        )
+        image_column, details_column = st.columns([1, 3])
+        with image_column:
+            if image_url:
+                st.image(image_url, width=90)
+            else:
+                st.write("🎤")
+        with details_column:
+            st.markdown(f"**{rank}. {artist.artist_name}**")
+            st.caption(f"{artist.listen_count:,} listens")
+        if image_error:
+            st.warning(f"Could not load an image for {artist.artist_name}: {image_error}")
+
+with album_column:
+    st.markdown("#### Albums")
+    for rank, album in enumerate(summary_releases.itertuples(), start=1):
+        image_url, image_error = get_album_cover(album.release_mbid)
+        image_column, details_column = st.columns([1, 3])
+        with image_column:
+            if image_url:
+                st.image(image_url, width=90)
+            else:
+                st.write("💿")
+        with details_column:
+            st.markdown(f"**{rank}. {album.release_name}**")
+            st.caption(f"{album.artist_name} · {album.listen_count:,} listens")
+        if image_error:
+            st.warning(f"Could not load cover art for {album.release_name}: {image_error}")
+
+st.divider()
 
 available_dates = get_snapshot_dates((artist_data, release_data))
 
@@ -235,7 +478,7 @@ album_tab, artist_tab, both_tab = st.tabs(["Albums", "Artists", "Both"])
 with album_tab:
     release_trend = releases[releases["release_mbid"].isin(release_ids)].copy()
     if release_trend.empty:
-        st.subheader("Album listens over time")
+        st.subheader("💿 Album listens over time")
         st.info("Select one or more albums to show this chart.")
     else:
         release_trend["series"] = (
@@ -260,13 +503,15 @@ with album_tab:
             },
         )
         fig = compact_chart(fig)
-        st.subheader("Album Listens Over Time")
+        st.subheader("Album Listens Over Time 💿 ")
         st.plotly_chart(fig, width="stretch", height=450)
-        st.subheader("Music Data")
+        st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            release_trend[
-                ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
-            ].rename(
+            format_music_data_dates(
+                release_trend[
+                    ["snapshot_date", "release_name", "artist_name", "listen_count", "release_mbid"]
+                ]
+            ).rename(
                 columns={
                     "snapshot_date": "Date",
                     "release_name": "Album",
@@ -282,7 +527,7 @@ with album_tab:
 with artist_tab:
     artist_trend = artists[artists["artist_mbid"].isin(artist_ids)].copy()
     if artist_trend.empty:
-        st.subheader("Artist Listens Over Time")
+        st.subheader("Artist Listens Over Time 🎤")
         st.info("Select one or more artists to show this chart.")
     else:
         fig = px.line(
@@ -299,13 +544,15 @@ with artist_tab:
             },
         )
         fig = compact_chart(fig)
-        st.subheader("Artist Listens Over Time")
+        st.subheader("Artist Listens Over Time 🎤")
         st.plotly_chart(fig, width="stretch",height=450)
-        st.subheader("Music Data")
+        st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            artist_trend[
-                ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
-            ].rename(
+            format_music_data_dates(
+                artist_trend[
+                    ["snapshot_date", "artist_name", "listen_count", "artist_mbid"]
+                ]
+            ).rename(
                 columns={
                     "snapshot_date": "Date",
                     "artist_name": "Artist",
@@ -318,7 +565,7 @@ with artist_tab:
         )
 
 with both_tab:
-    st.subheader("Artist and Album Listens Over Time")
+    st.subheader("Artist and Album Listens Over Time 🎧 ")
     combined_series = []
     if artist_ids:
         artist_series = artists[artists["artist_mbid"].isin(artist_ids)].copy()
@@ -357,9 +604,9 @@ with both_tab:
         )
         fig = compact_chart(fig)
         st.plotly_chart(fig, width="stretch")
-        st.subheader("Music Data")
+        st.subheader("🎶 Music Data 🎶")
         st.dataframe(
-            combined_trend.rename(
+            format_music_data_dates(combined_trend).rename(
                 columns={
                     "snapshot_date": "Date",
                     "series": "Artist or Album",

@@ -32,8 +32,8 @@ def make_report(music_data):
     user_prompt = (
         f"Selected artist(s): {selected_artists}\n"
         f"Selected album(s): {selected_albums}\n\n"
-        "Identify the artist with the highest listencount and the album with the highest listen count. "
-        "Return the artist name, artist count, album name, and album count.\n\n"
+        "State something interesting but true about the artist with the highest listen count and the album with the highest listen count. "
+        "Return the interesting fact, artist name, artist count, album name, and album count.\n\n"
         f"Data:\n{music_data.to_string(index=False)}"
     )
 
