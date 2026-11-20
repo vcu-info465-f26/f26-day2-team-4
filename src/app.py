@@ -177,6 +177,24 @@ def get_local_album_cover(release_mbid):
     return str(max(local_covers, key=lambda path: len(path.stem)))
 
 
+def get_local_artist_image(artist_mbid):
+    image_dir = Path(__file__).resolve().parent / "assets" / "artist_images"
+    if not artist_mbid or not image_dir.is_dir():
+        return None
+
+    local_images = [
+        path
+        for path in image_dir.iterdir()
+        if path.is_file()
+        and path.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}
+        and artist_mbid.lower().startswith(path.stem.lower())
+    ]
+    if not local_images:
+        return None
+
+    return str(max(local_images, key=lambda path: len(path.stem)))
+
+
 @st.cache_data(ttl=86400, show_spinner=False)
 def get_remote_album_cover(release_mbid):
     image_url = (
@@ -200,6 +218,10 @@ def get_album_cover(release_mbid):
 
 
 def get_ranked_artist_image(artist_name, artist_mbid):
+    local_image = get_local_artist_image(artist_mbid)
+    if local_image:
+        return local_image, None
+
     image_url, image_error = get_artist_image(artist_name)
     if image_url:
         return image_url, None
