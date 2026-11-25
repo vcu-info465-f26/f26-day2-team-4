@@ -1,3 +1,3 @@
 ## Music Listening Summary
 
-BTS is the top‑listened artist with 502,478 plays, while the most‑listened album is ARIRANG by BTS at 248,633 plays. The leading album’s count is roughly half of the artist’s total listens, showing BTS’s popularity spans multiple releases.
+BTS is your top artist with 504,088 listens, and the most‑played album is ARIRANG by BTS with 250,009 listens. The album’s count is roughly half of BTS’s total artist listens, showing a broader listening range across BTS’s other releases.
